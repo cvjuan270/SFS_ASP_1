@@ -12,6 +12,8 @@ using SFS_ASP_1.Model;
 using SFS_ASP_1.Models;
 using System.IO;
 using SFS_ASP_1.Controllers.GenDocEle;
+using Telerik.Reporting.Processing;
+using System.Diagnostics;
 
 namespace SFS_ASP_1.Controllers
 {
@@ -88,6 +90,40 @@ namespace SFS_ASP_1.Controllers
             }
 
             return RedirectToAction("Index", "Facturas");
+        }
+
+        public ActionResult GenReport( int Id) 
+        {
+            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC  [dbo].[Consulta_Datos_Reporte_FT] @DocEntry = '{0}'", Id));
+            if (!string.IsNullOrEmpty(dt.Rows[0].ItemArray[9].ToString()))
+            {
+                string RutImg = ConfigurationManager.AppSettings["RutSerFT"].ToString() + ConfigurationManager.AppSettings["IMG"].ToString() + "Logo.png";
+                Reportes.Report_FT_A4 reportToExport = new Reportes.Report_FT_A4(dt, RutImg);
+                ReportProcessor reportProcessor = new ReportProcessor();
+                Telerik.Reporting.InstanceReportSource instanceReportSource = new Telerik.Reporting.InstanceReportSource();
+                instanceReportSource.ReportDocument = reportToExport;
+                RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
+
+                string fileName = dt.Rows[0].ItemArray[0].ToString() + "-01-" + dt.Rows[0].ItemArray[10].ToString() + "." + result.Extension;
+
+                Response.Clear();
+                Response.ContentType = result.MimeType;
+                Response.Cache.SetCacheability(HttpCacheability.Private);
+                Response.Expires = -1;
+                Response.Buffer = true;
+
+                Response.AddHeader("Content-Disposition",
+                                   string.Format("{0};FileName=\"{1}\"",
+                                                 "attachment",
+                                                 fileName));
+                Response.BinaryWrite(result.DocumentBytes);
+                Response.End();
+                ViewBag.Confirmacion = "PDF generado";
+               
+            }
+
+            ViewBag.Error = "Factura sin firmar";
+            return View();
         }
 
         protected override void Dispose(bool disposing)

@@ -4,11 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h4 class="text-danger">@ViewBag.Error</h4>
+<h4 class="text-success">@ViewBag.Confirmacion</h4>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 @using (Html.BeginForm())
 {
     <p class="form-inline">
@@ -28,7 +26,7 @@
                 <td>@Html.TextBox("RazSoc", "", new { placeholder = "Razón social", @class = "form-control text-box" })</td>
             </tr>
             <tr>
-                
+
                 <td>
                     <input style="vertical-align:central" type="submit" value="Buscar" class="btn btn-primary" />
                 </td>
@@ -100,7 +98,16 @@
                 <td>@Html.ActionLink("CDR", "GetCdr", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
             }
 
+            <td>@Html.ActionLink("PDF", "GenReport", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
+
         </tr>
     }
 
 </table>
+
+
+<script>
+    function GetClientReport() {
+        window.open("/{ControllerName}/GenReport", "_blank");
+    };
+</script>
