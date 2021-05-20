@@ -29,8 +29,9 @@ namespace SFS_ASP_1.Models
     
         public virtual DbSet<OINV> OINV { get; set; }
         public virtual DbSet<NNM1> NNM1 { get; set; }
+        public virtual DbSet<ODLN> ODLN { get; set; }
     
-        public virtual int Actualizar_Rpta_Cdr(Nullable<int> docentry, string u_ResponseCode, string u_Description)
+        public virtual int Actualizar_Rpta_Cdr(Nullable<int> docentry, string u_ResponseCode, string u_Description, string u_DigestValue)
         {
             var docentryParameter = docentry.HasValue ?
                 new ObjectParameter("Docentry", docentry) :
@@ -44,7 +45,11 @@ namespace SFS_ASP_1.Models
                 new ObjectParameter("U_Description", u_Description) :
                 new ObjectParameter("U_Description", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Actualizar_Rpta_Cdr", docentryParameter, u_ResponseCodeParameter, u_DescriptionParameter);
+            var u_DigestValueParameter = u_DigestValue != null ?
+                new ObjectParameter("U_DigestValue", u_DigestValue) :
+                new ObjectParameter("U_DigestValue", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Actualizar_Rpta_Cdr", docentryParameter, u_ResponseCodeParameter, u_DescriptionParameter, u_DigestValueParameter);
         }
     
         public virtual int Actualizar_Rpta_Cdr_GR(Nullable<int> docentry, string u_ResponseCode, string u_Description, string u_DigestValue)

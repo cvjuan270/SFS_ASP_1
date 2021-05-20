@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace SFS_ASP_1.Models
 {
-    public class FacturaViewModel
+    public class DocumentosViewModel
     {
         public int DocEntry { get; set; }
 

@@ -49,10 +49,10 @@ namespace SFS_ASP_1.Controllers
             
 
             var Facturas = atenciones.ToList();
-            List<FacturaViewModel> facturas = (from fac in Facturas
+            List<DocumentosViewModel> facturas = (from fac in Facturas
                                                join ser in db.NNM1 on fac.Series equals ser.Series
                                                orderby fac.FolioNum ascending
-                                               select new FacturaViewModel { DocEntry = fac.DocEntry, DocDate = fac.DocDate, SeriesName = ser.SeriesName, FolioNum = fac.FolioNum,
+                                               select new DocumentosViewModel { DocEntry = fac.DocEntry, DocDate = fac.DocDate, SeriesName = ser.SeriesName, FolioNum = fac.FolioNum,
                                                    LicTradNum = fac.LicTradNum, CardName = fac.CardName, GrosProfit = fac.GrosProfit, DocTotal = fac.DocTotal,
                                                    U_ResponseCode = fac.U_ResponseCode, U_Description = fac.U_Description, U_DigestValue = fac.U_DigestValue }).ToList();
 

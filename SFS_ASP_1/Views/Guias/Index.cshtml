@@ -1,0 +1,1653 @@
+﻿@model IEnumerable<SFS_ASP_1.Models.ODLN>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DocNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CANCELED)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Handwrtten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Printed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvntSttus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Transfered)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ObjType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocDueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CardCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CardName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumAtCard)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatPercent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatSum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatSumFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscPrcnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscSum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscSumFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocCur)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocTotal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocTotalFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaidToDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaidFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GrosProfit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GrosProfFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ref1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ref2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JrnlMemo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceiptNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SlpCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrnspCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartSupply)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Confirmed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GrossBase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImportEnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTran)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SummryType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdInvnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdCardBal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Instance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Flags)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvntDirec)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CntctCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowSCN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FatherCard)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SysRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurSource)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatSumSy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiscSumSy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocTotalSy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaidSys)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FatherType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GrosProfSy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsICT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Volume)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VolUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WeightUnit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Series)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Filler)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataSource)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StampNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isCrin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinncPriod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserSign)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.selfInv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatPaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatPaidFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatPaidSys)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserSign2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WddStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.draftKey)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalExpns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalExpFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalExpSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DunnLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogInstanc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Exported)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StationID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Indicator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NetProc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AqcsTax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AqcsTaxFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AqcsTaxSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CashDiscPr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CashDiscnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CashDiscFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CashDiscSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipToCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LicTradNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaymentRef)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WTSum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WTSumFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WTSumSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoundDif)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoundDifFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoundDifSy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckDigit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Form1099)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Box1099)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.submitted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PoPrss)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rounding)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RevisionPo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Segment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReqDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CancelDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pick)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BlockDunn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PeyMethod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayBlock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayBlckRef)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxDscn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reserve)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Max1099)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CntrlBnk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PickRmrk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISRCodLine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpAppl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpApplFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpApplSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeferrTax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LetterNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WTApplied)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WTAppliedF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BoeReserev)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AgentCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WTAppliedS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EquVatSum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EquVatSumF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EquVatSumS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Installmnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VATFirst)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NnSbAmnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NnSbAmntSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NbSbAmntFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExepAmnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExepAmntSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExepAmntFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrExt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrInv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NCorrInv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CEECFlag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaseAmnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaseAmntSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaseAmntFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CtlAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BPLId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BPLName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VATRegNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TxInvRptNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TxInvRptDt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KVVATCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WTDetails)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SumAbsId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SumRptDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PIndicator)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManualNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UseShpdGd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaseVtAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaseVtAtSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BaseVtAtFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NnSbVAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NnSbVAtSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NbSbVAtFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExptVAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExptVAtSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExptVAtFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LYPmtAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LYPmtAtSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LYPmtAtFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpAnSum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpAnSys)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpAnFrgn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocSubType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmAmnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmAmntSC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmAmntFC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmDrawn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmPrcnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaidSum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaidSumFc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaidSumSc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FolioPref)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FolioNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmAppl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmApplFc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmApplSc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LPgFolioN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Header)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Footer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Posted)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OwnerCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BPChCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BPChCntc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayToCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPaytoBnk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BnkCntry)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BankCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BnkAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BnkBranch)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isIns)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrackNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VersionNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LangCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BPNameOW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BillToOW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShipToOW)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RetInvoice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClsDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MInvNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MInvDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeqCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Serial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeriesStr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubStr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxOnExp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxOnExpFc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxOnExpSc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxOnExAp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxOnExApF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaxOnExApS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastPmnTyp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LndCstNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UseCorrVat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BlkCredMmo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpenForLaC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Excised)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExcRefDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExcRmvTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SrvGpPrcnt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepositNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CertNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AutoCrtFlw)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FlwRefDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FlwRefNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VatJENum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmVat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmVatFc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmVatSc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmAppVat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmAppVatF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DpmAppVatS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InsurOp347)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IgnRelDoc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuildDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResidenNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.U_ResponseCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.U_Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.U_TipNotCre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.U_DigestValue)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CANCELED)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Handwrtten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Printed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvntSttus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Transfered)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ObjType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocDueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CardName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumAtCard)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatPercent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatSum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatSumFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscPrcnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscSum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscSumFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocCur)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocTotal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocTotalFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaidToDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaidFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GrosProfit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GrosProfFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ref1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ref2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JrnlMemo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceiptNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GroupNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SlpCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrnspCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartSupply)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Confirmed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GrossBase)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImportEnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTran)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SummryType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdInvnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdCardBal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Instance)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Flags)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvntDirec)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CntctCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowSCN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FatherCard)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SysRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurSource)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatSumSy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiscSumSy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocTotalSy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaidSys)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FatherType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GrosProfSy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsICT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Volume)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VolUnit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WeightUnit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Series)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Filler)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataSource)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StampNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isCrin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinncPriod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserSign)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.selfInv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatPaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatPaidFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatPaidSys)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserSign2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WddStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.draftKey)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalExpns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalExpFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalExpSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DunnLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LogInstanc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Exported)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StationID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Indicator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NetProc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AqcsTax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AqcsTaxFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AqcsTaxSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CashDiscPr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CashDiscnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CashDiscFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CashDiscSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipToCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LicTradNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaymentRef)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WTSum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WTSumFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WTSumSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoundDif)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoundDifFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RoundDifSy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckDigit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Form1099)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Box1099)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.submitted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PoPrss)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rounding)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RevisionPo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Segment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReqDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CancelDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PickStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pick)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BlockDunn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PeyMethod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayBlock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayBlckRef)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxDscn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reserve)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Max1099)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CntrlBnk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PickRmrk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISRCodLine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpAppl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpApplFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpApplSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DeferrTax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LetterNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FromDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ToDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WTApplied)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WTAppliedF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BoeReserev)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AgentCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WTAppliedS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EquVatSum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EquVatSumF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EquVatSumS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Installmnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VATFirst)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NnSbAmnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NnSbAmntSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NbSbAmntFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExepAmnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExepAmntSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExepAmntFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorrExt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorrInv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NCorrInv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CEECFlag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaseAmnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaseAmntSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaseAmntFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CtlAccount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BPLId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BPLName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VATRegNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TxInvRptNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TxInvRptDt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KVVATCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WTDetails)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SumAbsId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SumRptDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PIndicator)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManualNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UseShpdGd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaseVtAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaseVtAtSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BaseVtAtFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NnSbVAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NnSbVAtSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NbSbVAtFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExptVAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExptVAtSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExptVAtFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LYPmtAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LYPmtAtSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LYPmtAtFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpAnSum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpAnSys)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpAnFrgn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocSubType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmAmnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmAmntSC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmAmntFC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmDrawn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmPrcnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaidSum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaidSumFc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaidSumSc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FolioPref)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FolioNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmAppl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmApplFc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmApplSc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LPgFolioN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Header)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Footer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Posted)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OwnerCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BPChCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BPChCntc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayToCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsPaytoBnk)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BnkCntry)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BankCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BnkAccount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BnkBranch)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isIns)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrackNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VersionNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LangCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BPNameOW)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillToOW)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShipToOW)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RetInvoice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClsDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MInvNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MInvDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeqCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Serial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeriesStr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubStr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxOnExp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxOnExpFc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxOnExpSc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxOnExAp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxOnExApF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaxOnExApS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastPmnTyp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LndCstNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UseCorrVat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BlkCredMmo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpenForLaC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Excised)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExcRefDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExcRmvTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SrvGpPrcnt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepositNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CertNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DutyStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AutoCrtFlw)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FlwRefDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FlwRefNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VatJENum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmVat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmVatFc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmVatSc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmAppVat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmAppVatF)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DpmAppVatS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InsurOp347)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IgnRelDoc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuildDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ResidenNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.U_ResponseCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.U_Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.U_TipNotCre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.U_DigestValue)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DocEntry }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DocEntry }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DocEntry })
+        </td>
+    </tr>
+}
+
+</table>
