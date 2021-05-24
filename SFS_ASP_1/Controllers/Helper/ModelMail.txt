@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id=":u8" class="ii gt">
+        <div id=":u7" class="a3s aXjCH ">
+            <div>
+                <div>
+                    <table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" style="font-family:Helvetica neue,Helvetica,Arial,Verdana,sans-serif" width="100%">
+                        <tr>
+                            <td colspan="1" rowspan="1">
+                                <table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="520px">
+                                    <tr>
+                                        <td colspan="1" rowspan="1" valign="top">
+                                            <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td align="left" colspan="1" rowspan="1" style="color:#05AFF2; font-size:20px;line-height:32px;text-align:left;font-weight:bold" valign="top"><span>FACTURA ELECTRÓNICA @SerNumCor</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="1" rowspan="1" style="color:#cccccc;padding-bottom:15px" valign="top">
+                                                        <hr color="#cccccc" size="1" />
+                                                    </td>
+                                                </tr>
+                                                <tr align="left" colspan="1" rowspan="1" valign="top">
+                                                    <td>
+                                                        <div style="padding:10px 0; background-color: #40454C; color: #DBD7D2;">
+                                                            Estimados @NomSocNeg </div>
+                                                    </td>
+                                                </tr>
+                                                <tr align="left" colspan="1" rowspan="1" valign="top">
+                                                    <td>
+                                                        <div style="padding:10px 0; color: #40454C;">
+                                                            Se adjunta en este mensaje una FACTURA ELECTRÓNICA
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr align="left" colspan="1" rowspan="1" valign="top">
+                                                    <td>
+                                                        <div style="padding:5px 0">
+                                                            <ul>
+                                                                <li><b>FACTURA ELECTRÓNICA @SerNumCor </b></li>
+                                                                <li>Fecha de emisión: <b>@FecEmi</b></li>
+                                                                <li>Total: <b>S/ @TotDoc</b></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div style="padding:5px 0; color: #40454C;">
+                                                            Se adjunta en este mensaje el documento electrónico en formatos PDF y XML. La representación impresa en PDF tiene la misma validez que una emitida de manera tradicional.                                    </div>
+                                                        <div style="padding:5px 0; background-color: #F4B80E; color: #40454C;">
+                                                            Representación impresa de la factura electrónica generada desde el sistema facturador SUNAT. Puede verificarla utilizando su clave SOL<br />
+                                                            <br />
+                                                            <a href="https://e-consulta.sunat.gob.pe/ol-ti-itconsvalicpe/ConsValiCpe.htm">https://e-consulta.sunat.gob.pe/ol-ti-itconsvalicpe/ConsValiCpe.htm</a></div>
+                                                    </td>
+                                                </tr>
+                                                <tr align="left" colspan="1" rowspan="1" valign="top">
+                                                    <td>
+                                                        <div>
+                                                            <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                <tr valign="top">
+                                                                    <td align="left" colspan="1" rowspan="1" style="padding-top:10px;text-align:left; color: #40454C;" valign="top"><span>Atentamente</span>:<br clear="none" />
+                                                                        @RazSoc<br clear="none" />
+                                                                        <span><b>RUC @Ruc</b></span><br clear="none" />
+                                                                        <br />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="1" rowspan="1">
+                                                        <table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                            <tr>
+                                                                <td colspan="1" rowspan="1" style="color:#DBD7D2; text-align: center; font-size: xx-small; background-color: #40454C;" valign="top" width="100%">
+                                                                    TgrSystem<br />
+                                                                    51-993433774</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="1" rowspan="1">
+                                                                    <div>
+                                                                        <table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                            <tr>
+                                                                                <td align="left" colspan="1" rowspan="1" style="padding-top:10px;color:#707070;font-size:12px;line-height:14px;text-align:left" valign="top">
+                                                                                    <br clear="none" />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="yj6qo">
+                    </div>
+                    <div class="adL">
+                    </div>
+                </div>
+                <div class="adL">
+                </div>
+                <div class="adL">
+                </div>
+                <div class="adL">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id=":uz" class="hq gt">
+        <div class="hp">
+        </div>
+    </div>
+</body>
+</html>

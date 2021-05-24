@@ -134,7 +134,7 @@ namespace SFS_ASP_1.Controllers
         public ActionResult GenReport(int Id)
         {
             DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC  [dbo].[Consulta_Datos_Reporte_GR] @DocEntry = '{0}'", Id));
-            if (!string.IsNullOrEmpty(dt.Rows[0].ItemArray[9].ToString()))
+            if (!string.IsNullOrEmpty(dt.Rows[0].ItemArray[14].ToString()))
             {
                 string RutImg = ConfigurationManager.AppSettings["RutSerGR"].ToString() + ConfigurationManager.AppSettings["IMG"].ToString() + "Logo.png";
                 Reportes.Report_GR_A4 reportToExport = new Reportes.Report_GR_A4(dt, RutImg);
@@ -144,7 +144,7 @@ namespace SFS_ASP_1.Controllers
                 RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
 
                 string fileName = dt.Rows[0].ItemArray[0].ToString() + "-09-" + dt.Rows[0].ItemArray[15].ToString() + "." + result.Extension;
-
+                string RutPdf = ConfigurationManager.AppSettings["RutSerGR"].ToString() + ConfigurationManager.AppSettings["REPO"].ToString() + fileName;
                 Response.Clear();
                 Response.ContentType = result.MimeType;
                 Response.Cache.SetCacheability(HttpCacheability.Private);
@@ -156,13 +156,19 @@ namespace SFS_ASP_1.Controllers
                                                  "attachment",
                                                  fileName));
                 Response.BinaryWrite(result.DocumentBytes);
+                if (!System.IO.File.Exists(RutPdf))
+                {
+                    System.IO.File.WriteAllBytes(RutPdf, result.DocumentBytes);
+                }
                 Response.End();
                 ViewBag.Confirmacion = "PDF generado";
                 return File(result.DocumentBytes, "application/pdf");
             }
-            ViewBag.Error = "Factura sin firmar";
-            return View();
+            ViewBag.Error = "Guia sin Firma digital";
+
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest,"Documento electronico sin firma Digital");
         }
+  
         protected override void Dispose(bool disposing)
         {
             if (disposing)

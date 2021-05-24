@@ -132,6 +132,7 @@ namespace SFS_ASP_1.Controllers
             if (!string.IsNullOrEmpty(dt.Rows[0].ItemArray[9].ToString()))
             {
                 string RutImg = ConfigurationManager.AppSettings["RutSerFT"].ToString() + ConfigurationManager.AppSettings["IMG"].ToString() + "Logo.png";
+
                 Reportes.Report_FT_A4 reportToExport = new Reportes.Report_FT_A4(dt, RutImg);
                 ReportProcessor reportProcessor = new ReportProcessor();
                 Telerik.Reporting.InstanceReportSource instanceReportSource = new Telerik.Reporting.InstanceReportSource();
@@ -139,7 +140,7 @@ namespace SFS_ASP_1.Controllers
                 RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
 
                 string fileName = dt.Rows[0].ItemArray[0].ToString() + "-01-" + dt.Rows[0].ItemArray[10].ToString() + "." + result.Extension;
-
+                string RutPdf = ConfigurationManager.AppSettings["RutSerFT"].ToString() + ConfigurationManager.AppSettings["REPO"].ToString() + fileName;
                 Response.Clear();
                 Response.ContentType = result.MimeType;
                 Response.Cache.SetCacheability(HttpCacheability.Private);
@@ -151,6 +152,10 @@ namespace SFS_ASP_1.Controllers
                                                  "attachment",
                                                  fileName));
                 Response.BinaryWrite(result.DocumentBytes);
+                if (!System.IO.File.Exists(RutPdf))
+                {
+                    System.IO.File.WriteAllBytes(RutPdf, result.DocumentBytes);
+                }
                 Response.End();
                 ViewBag.Confirmacion = "PDF generado";
                 return File(result.DocumentBytes,"application/pdf");

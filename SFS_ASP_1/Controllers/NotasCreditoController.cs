@@ -101,7 +101,7 @@ namespace SFS_ASP_1.Controllers
             return View(notas);
         }
 
-        [HttpPost]
+       
         public ActionResult NotCredCreate(int Id)
         {
            CrearNC crearNC = new CrearNC(Id);
@@ -138,7 +138,7 @@ namespace SFS_ASP_1.Controllers
                 RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
 
                 string fileName = dt.Rows[0].ItemArray[0].ToString() + "-07-" + dt.Rows[0].ItemArray[10].ToString() + "." + result.Extension;
-
+                string RutPdf = ConfigurationManager.AppSettings["RutSerFT"].ToString() + ConfigurationManager.AppSettings["REPO"].ToString() + fileName;
                 Response.Clear();
                 Response.ContentType = result.MimeType;
                 Response.Cache.SetCacheability(HttpCacheability.Private);
@@ -150,11 +150,15 @@ namespace SFS_ASP_1.Controllers
                                                  "attachment",
                                                  fileName));
                 Response.BinaryWrite(result.DocumentBytes);
+                if (!System.IO.File.Exists(RutPdf))
+                {
+                    System.IO.File.WriteAllBytes(RutPdf, result.DocumentBytes);
+                }
                 Response.End();
                 ViewBag.Confirmacion = "PDF generado";
                 return File(result.DocumentBytes, "application/pdf");
             }
-            ViewBag.Error = "Factura sin firmar";
+            ViewBag.Error = "Nota de credito sin firmar";
             return View();
         }
         protected override void Dispose(bool disposing)
