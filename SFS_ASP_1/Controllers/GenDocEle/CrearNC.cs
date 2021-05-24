@@ -2,6 +2,7 @@
 using RestSharp;
 using SFS_ASP_1.Controllers.Helper;
 using SFS_ASP_1.Model;
+using SFS_ASP_1.Models.NotasCreadito;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,10 +14,11 @@ using System.Web;
 
 namespace SFS_ASP_1.Controllers.GenDocEle
 {
-    public class CrearFT
+    public class CrearNC
     {
         #region variables
         public string[] respuestacdr = new string[2];
+        public static DataTable dtcabecera = null;
         public string RespuestaXml;
         private static string oRucEmi;
         private static string oRazSocEmi;
@@ -53,12 +55,12 @@ namespace SFS_ASP_1.Controllers.GenDocEle
             oDireccEmi = dtEmi.Rows[0].ItemArray[2].ToString();
             #endregion
 
-            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC [dbo].[Consulta_NombreFactura] @DocEntry = '{0}'", DocEntry));
+            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC [dbo].[Consulta_NombreNC] @DocEntry = '{0}'", DocEntry));
             //oLicTradNum = dt.Rows[0].ItemArray[0].ToString();
             //oCardName = dt.Rows[0].ItemArray[1].ToString();
             oSerie = dt.Rows[0].ItemArray[2].ToString();
             oFolioNum = dt.Rows[0].ItemArray[3].ToString();
-            oDocType = "01";
+            oDocType = "07";
             oDocEntry = DocEntry;
         }
         public static void Rutas()
@@ -76,10 +78,10 @@ namespace SFS_ASP_1.Controllers.GenDocEle
             RutHttpActualizar = ConfigurationManager.AppSettings["RutHttpFT"].ToString() + ConfigurationManager.AppSettings["HttpActualizar"].ToString();
             
         }
-        public static RootFT GetDocumentoElectronico(int DocEntry)
-        {
 
-            RootFT root = new RootFT
+        public static RootNC GetDocumentoElectronicoNC(int DocEntry)
+        {
+            RootNC root = new RootNC
             {
                 cabecera = GetCabecera(DocEntry),
                 detalle = GetListDetalle(DocEntry),
@@ -88,38 +90,41 @@ namespace SFS_ASP_1.Controllers.GenDocEle
             };
             return root;
         }
-
-        public static Cabecera GetCabecera(int DocEntry)
+        public static CabeceraNC GetCabecera(int DocEntry)
         {
-            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC[dbo].[Consulta_SFS_CAB] @DocEntry = '{0}'", DocEntry));
-
-            Cabecera cabecera = new Cabecera();
+            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC[dbo].[Consulta_SFS_CAB_NC] @DocEntry = '{0}'", DocEntry));
+            dtcabecera = dt;
+            CabeceraNC cabecera = new CabeceraNC();
 
             cabecera.tipOperacion = dt.Rows[0].ItemArray[0].ToString();
             cabecera.fecEmision = dt.Rows[0].ItemArray[1].ToString();
             cabecera.horEmision = dt.Rows[0].ItemArray[2].ToString();
-            cabecera.fecVencimiento = dt.Rows[0].ItemArray[3].ToString();
-            cabecera.codLocalEmisor = dt.Rows[0].ItemArray[4].ToString();
-            cabecera.tipDocUsuario = dt.Rows[0].ItemArray[5].ToString();
-            cabecera.numDocUsuario = dt.Rows[0].ItemArray[6].ToString();
-            cabecera.rznSocialUsuario = dt.Rows[0].ItemArray[7].ToString();
-            cabecera.tipMoneda = dt.Rows[0].ItemArray[8].ToString();
-            cabecera.sumTotTributos = dt.Rows[0].ItemArray[9].ToString();
-            cabecera.sumTotValVenta = dt.Rows[0].ItemArray[10].ToString();
-            cabecera.sumPrecioVenta = dt.Rows[0].ItemArray[11].ToString();
-            cabecera.sumDescTotal = dt.Rows[0].ItemArray[12].ToString();
-            cabecera.sumOtrosCargos = dt.Rows[0].ItemArray[13].ToString();
-            cabecera.sumTotalAnticipos = dt.Rows[0].ItemArray[14].ToString();
-            cabecera.sumImpVenta = dt.Rows[0].ItemArray[15].ToString();
-            cabecera.ublVersionId = dt.Rows[0].ItemArray[16].ToString();
-            cabecera.customizationId = dt.Rows[0].ItemArray[17].ToString();
-            cabecera.adicionalCabecera = GetAditionalCabecera(DocEntry);
+            cabecera.codLocalEmisor = dt.Rows[0].ItemArray[3].ToString();
+            cabecera.tipDocUsuario = dt.Rows[0].ItemArray[4].ToString();
+            cabecera.numDocUsuario = dt.Rows[0].ItemArray[5].ToString();
+            cabecera.rznSocialUsuario = dt.Rows[0].ItemArray[6].ToString();
+            cabecera.tipMoneda = dt.Rows[0].ItemArray[7].ToString();
+            cabecera.codMotivo = dt.Rows[0].ItemArray[8].ToString();
+            cabecera.desMotivo = dt.Rows[0].ItemArray[9].ToString();
+            cabecera.tipDocAfectado = dt.Rows[0].ItemArray[10].ToString();
+            cabecera.numDocAfectado = dt.Rows[0].ItemArray[11].ToString();
+            cabecera.sumTotTributos = dt.Rows[0].ItemArray[12].ToString();
+            cabecera.sumTotValVenta = dt.Rows[0].ItemArray[13].ToString();
+            cabecera.sumPrecioVenta = dt.Rows[0].ItemArray[14].ToString();
+            cabecera.sumDescTotal = dt.Rows[0].ItemArray[15].ToString();
+            cabecera.sumOtrosCargos = dt.Rows[0].ItemArray[16].ToString();
+            cabecera.sumTotalAnticipos = dt.Rows[0].ItemArray[17].ToString();
+            cabecera.sumImpVenta = dt.Rows[0].ItemArray[18].ToString();
+            cabecera.ublVersionId = dt.Rows[0].ItemArray[19].ToString();
+            cabecera.customizationId = dt.Rows[0].ItemArray[20].ToString();
+
+
 
             return cabecera;
         }
         public static AdicionalCabecera GetAditionalCabecera(int DocEntry)
         {
-            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC  [dbo].[Consulta_SFS_ACA] @DocEntry = '{0}'", DocEntry));
+            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC  [dbo].[Consulta_SFS_ACA_NC] @DocEntry = '{0}'", DocEntry));
 
             AdicionalCabecera adicionalCabecera = new AdicionalCabecera();
 
@@ -139,7 +144,7 @@ namespace SFS_ASP_1.Controllers.GenDocEle
         }
         public static List<Detalle> GetListDetalle(int DocEntry)
         {
-            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC [dbo].[Consulta_SFS_DET] @DocEntry = '{0}'", DocEntry));
+            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC [dbo].[Consulta_SFS_DET_NC] @DocEntry = '{0}'", DocEntry));
             List<Detalle> odetalle = new List<Detalle>();
 
             for (int i = 0; i < dt.Rows.Count; i++)
@@ -190,7 +195,7 @@ namespace SFS_ASP_1.Controllers.GenDocEle
         }
         public static List<Leyenda> GetLeyenda(int DocEntry)
         {
-            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC [dbo].[Consulta_SFS_LEY] @DocEntry = '{0}'", DocEntry));
+            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC [dbo].[Consulta_SFS_LEY_NC] @DocEntry = '{0}'", DocEntry));
 
             List<Leyenda> leyendas = new List<Leyenda>();
             Leyenda leyenda = new Leyenda();
@@ -203,7 +208,7 @@ namespace SFS_ASP_1.Controllers.GenDocEle
         }
         public static List<Tributo> GetTributo(int DocEntry)
         {
-            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC  [dbo].[Consulta_SFS_TRY] @DocEntry = '{0}'", DocEntry));
+            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC  [dbo].[Consulta_SFS_TRY_NC] @DocEntry = '{0}'", DocEntry));
             List<Tributo> tributos = new List<Tributo>();
             Tributo tributo = new Tributo();
 
@@ -216,7 +221,6 @@ namespace SFS_ASP_1.Controllers.GenDocEle
             tributos.Add(tributo);
             return tributos;
         }
-
         public static string CreaJsonDoc(string num_ruc, string tip_docu, string num_docu)
         {
             JsonDoc body = new JsonDoc();
@@ -227,8 +231,7 @@ namespace SFS_ASP_1.Controllers.GenDocEle
 
             return JsonConvert.SerializeObject(body);
         }
-        
-        public void GuardaJson(RootFT root)
+        public void GuardaJson(RootNC root)
         {
 
             string json = JsonConvert.SerializeObject(root, Formatting.Indented);
@@ -244,10 +247,9 @@ namespace SFS_ASP_1.Controllers.GenDocEle
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
             request.AddHeader("Content-Type", "application/json;chartset=utf-8");
-            request.AddHeader("Token", "d9860b1f0ed6461036dfa5649652c08c");
+            //request.AddHeader("Token", "d9860b1f0ed6461036dfa5649652c08c");
             request.AddParameter("application/json;chartset=utf-8", oJson, ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
+            IRestResponse response =  client.Execute(request);
             return response;
         }
 
@@ -259,10 +261,9 @@ namespace SFS_ASP_1.Controllers.GenDocEle
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
             request.AddHeader("Content-Type", "application/json;chartset=utf-8");
-            request.AddHeader("Token", "d9860b1f0ed6461036dfa5649652c08c");
+           // request.AddHeader("Token", "d9860b1f0ed6461036dfa5649652c08c");
             request.AddParameter("application/json;chartset=utf-8", oJson, ParameterType.RequestBody);
-            IRestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
+            IRestResponse response =  client.Execute(request);
             return response;
         }
 
@@ -272,25 +273,21 @@ namespace SFS_ASP_1.Controllers.GenDocEle
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
             request.AddHeader("Content-Type", "application/json;chartset=utf-8");
-            request.AddHeader("Token", "d9860b1f0ed6461036dfa5649652c08c");
+            //request.AddHeader("Token", "d9860b1f0ed6461036dfa5649652c08c");
             request.AddParameter("application/json;chartset=utf-8", "{\\\"txtSecuencia\\\":\\\"000\\\"}", ParameterType.RequestBody);
-             IRestResponse response =  client.Execute(request);
-            Console.WriteLine(response.Content);
+            IRestResponse response =  client.Execute(request);
             return response;
         }
-
-
-        private void ActualiRptaCdt()
+        private void ActualizarRptaFirma()
         {
-            Conexion.EjecutarQuery(string.Format("EXEC [dbo].[Actualizar_Rpta_Cdr]@Docentry = {0}, @U_ResponseCode = '{1}', @U_Description = '{2}',@U_DigestValue='{3}'", oDocEntry, respuestacdr[0], respuestacdr[1],respuestacdr[2]));
+            Conexion.EjecutarQuery(string.Format("EXEC [dbo].[Actualizar_Rpta_Xml_NC]@Docentry = {0}, @U_DigestValue = '{1}'", oDocEntry, RespuestaXml));
+        }
+        private void ActualiRptaCdr()
+        {
+            Conexion.EjecutarQuery(string.Format("EXEC [dbo].[Actualizar_Rpta_Cdr_NC]@Docentry = {0}, @U_ResponseCode = '{1}', @U_Description = '{2}',@U_DigestValue='{3}'", oDocEntry, respuestacdr[0], respuestacdr[1], respuestacdr[2]));
         }
 
-        private void ActualizarRptaFirma() 
-        {
-            Conexion.EjecutarQuery(string.Format("EXEC [dbo].[Actualizar_Rpta_Xml]@Docentry = {0}, @U_DigestValue = '{1}'", oDocEntry, RespuestaXml));
-        }
-
-        public CrearFT(int DocEntry) 
+        public  CrearNC(int DocEntry) 
         {
             var oLog = new Log(RutaLog);
             try
@@ -298,37 +295,50 @@ namespace SFS_ASP_1.Controllers.GenDocEle
                 Datos(DocEntry);
                 Rutas();
 
-                var docjson = GetDocumentoElectronico(oDocEntry);
-                GuardaJson(docjson);
+                var docjson = GetDocumentoElectronicoNC(oDocEntry);
 
-                 GetActualizaPantallaAsync().Wait();
-                 GetXmlAsync().Wait();
-
-                if (System.IO.File.Exists(RutaXml))
+                //aca se valida si se escogio motino de nc
+                if (!string.IsNullOrEmpty(dtcabecera.Rows[0].ItemArray[8].ToString()) && !string.IsNullOrEmpty(dtcabecera.Rows[0].ItemArray[11].ToString()))
                 {
-                    RespuestaXml = LeeCdr.GetXml(RutaXml);
-                    ActualizarRptaFirma();
+                    GuardaJson(docjson);
 
-                    GetCdrAsync().Wait();
+                    GetActualizaPantallaAsync().Wait();
+                    GetXmlAsync().Wait();
 
-                    if (System.IO.File.Exists(RutaCdr))
+                    if (System.IO.File.Exists(RutaXml))
                     {
-                        respuestacdr = LeeCdr.GetCdr(RutaCdr, RutaXmlCdr,RutaRPTA);
-                        ActualiRptaCdt();
+                        RespuestaXml = LeeCdr.GetXml(RutaXml);
+                        ActualizarRptaFirma();
+
+                        GetCdrAsync().Wait();
+
+                        if (System.IO.File.Exists(RutaCdr))
+                        {
+                            respuestacdr = LeeCdr.GetCdr(RutaCdr, RutaXmlCdr, RutaRPTA);
+                            ActualiRptaCdr();
+                        }
+                        else
+                        {
+                            respuestacdr[0] = "1";
+                            respuestacdr[1] = "Rechazado por SUNAT y / ó Error al invocar el servicio de SUNAT.";
+                            oLog.Add("Error: " + "DocType: " + oDocType + " - DocEntry: " + oDocEntry + " Exception" + respuestacdr);
+                        }
                     }
                     else
                     {
                         respuestacdr[0] = "1";
-                        respuestacdr[1] = "Rechazado por SUNAT y / ó Error al invocar el servicio de SUNAT.";
+                        respuestacdr[1] = "Error al firmar archivo XML";
                         oLog.Add("Error: " + "DocType: " + oDocType + " - DocEntry: " + oDocEntry + " Exception" + respuestacdr);
                     }
                 }
                 else
                 {
-                    respuestacdr[0] = "1";
-                    respuestacdr[1] = "Error al firmar archivo XML";
-                    oLog.Add("Error: " + "DocType: " + oDocType + " - DocEntry: " + oDocEntry + " Exception" + respuestacdr);
+                    respuestacdr[0] = "100";
+                    respuestacdr[1] = "No se a seleccionado el tipo de NC Y/O no  tiene documento base";
                 }
+
+                
+               
             }
             catch (Exception ex)
             {

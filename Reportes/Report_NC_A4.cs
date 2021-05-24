@@ -8,9 +8,9 @@ namespace Reportes
     /// <summary>
     /// Summary description for Report_GR_A4.
     /// </summary>
-    public partial class Report_FT_A4 : Telerik.Reporting.Report
+    public partial class Report_NC_A4 : Telerik.Reporting.Report
     {
-        public Report_FT_A4(DataTable dt,string PathLogo)
+        public Report_NC_A4(DataTable dt,string PathLogo)
         {
             //
             // Required for telerik Reporting designer support

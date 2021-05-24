@@ -4,20 +4,22 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Guias de remision</h2>
-@using (Html.BeginForm("Index", "Guias", FormMethod.Post))
+<h2>Notas de Credito</h2>
+<h4></h4>
+@using (Html.BeginForm(null, null, FormMethod.Post))
 {
-<fieldset>
-    <legend>Criterios de búsqueda</legend>
-    <div class="form-inline">
-        <input id="FecIni" name="FecIni" class="form-control" type="date" value="@ViewBag.FecIni" />
-        <input id="FecFin" name="FecFin" class="form-control" type="date" value="@ViewBag.FecFin" />
-        @Html.TextBox("Ruc", "", new { placeholder = "RUC", @class = "form-control" })
-        @Html.TextBox("RazSoc", "", new { placeholder = "Razón social", @class = "form-control" })
-        @Html.TextBox("FolioNum", "", new { placeholder = "Número", @class = "form-control" })
-        <input class="btn btn-outline-primary" type="submit" value="Buscar" id="btnFiltrar" />
-     </div>
-</fieldset>
+    <fieldset>
+        <legend>Criterios de búsqueda</legend>
+        <div class="form-inline">
+            <input id="FecIni" name="FecIni" class="form-control" type="date" value="@ViewBag.FecIni" />
+            <input id="FecFin" name="FecFin" class="form-control" type="date" value="@ViewBag.FecFin" />
+
+            @Html.TextBox("Ruc", "", new { placeholder = "RUC", @class = "form-control" })
+            @Html.TextBox("RazSoc", "", new { placeholder = "Razón social", @class = "form-control" })
+            @Html.TextBox("FolioNum", "", new { placeholder = "Número", @class = "form-control" })
+            <input class="btn btn-outline-primary" type="submit" value="Buscar" />
+        </div>
+    </fieldset>
 }
 <table class="table table-sm">
     <tbody>
@@ -45,17 +47,18 @@
             <td>@Html.DisplayFor(modelItem => item.LicTradNum)</td>
             <td>@Html.DisplayFor(modelItem => item.CardName)</td>
             <td>@Html.DisplayFor(modelItem => item.DocTotal)</td>
+
             @if (string.IsNullOrEmpty(item.U_ResponseCode))
             {
-                <td>@Html.ActionLink("Sunat", "GuiaCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
+                <td>@Html.ActionLink("Sunat", "NotCredCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
             }
             else if (item.U_ResponseCode == "0")
             {
-                <td>@Html.ActionLink("Sunat", "GuiaCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
+                <td>@Html.ActionLink("Sunat", "NotCredCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
             }
             else
             {
-                <td>@Html.ActionLink("Sunat", "GuiaCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
+                <td>@Html.ActionLink("Sunat", "NotCredCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
             }
 
             @if (string.IsNullOrEmpty(item.U_DigestValue))
@@ -86,15 +89,3 @@
     }
 
 </table>
-
-<script>
-    $(function () {
-        $("#btnFiltrar").click(function () {
-            var url = "@Url.Action("Filtrar","Guias")";
-            var fecha = $("#FecIni").val();
-            var data = { FecIni: fecha };
-
-            $.post(url, data).done(function (data){ })
-
-    });
-</script>

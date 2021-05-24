@@ -4,46 +4,34 @@
     ViewBag.Title = "Index";
 }
 
+<h2>Facturas</h2>
 <h4 class="text-danger">@ViewBag.Error</h4>
 <h4 class="text-success">@ViewBag.Confirmacion</h4>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index","Facturas",FormMethod.Post))
 {
-    <p class="form-inline">
-        <table class="table">
-            <thead>
-                <tr><td>Filtar</td></tr>
-            </thead>
-            <tr>
-                <td>Desde:@Html.TextBox("FecIni", String.Format("{0:dd/MM/yyyy}", DateTime.Now), new { @class = "form-control datepicker", @type = "datetime" })</td>
-                <td>Hasta:@Html.TextBox("FecFin", String.Format("{0:dd/MM/yyyy}", DateTime.Now), new { @class = "form-control datepicker", @type = "datetime" })</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>@Html.TextBox("Ruc", "", new { placeholder = "RUC", @class = "form-control text-box" })</td>
-                <td>@Html.TextBox("RazSoc", "", new { placeholder = "Razón social", @class = "form-control text-box" })</td>
-            </tr>
-            <tr>
+<fieldset>
+    <legend>Criterios de búsqueda</legend>
+    <div class="form-inline">
+        <input id="FecIni" name="FecIni" class="form-control" type="date" value="@ViewBag.FecIni" />
+        <input id="FecFin" name="FecFin" class="form-control" type="date" value="@ViewBag.FecFin" />
 
-                <td>
-                    <input style="vertical-align:central" type="submit" value="Buscar" class="btn btn-primary" />
-                </td>
-            </tr>
-        </table>
-    </p>
+        @Html.TextBox("Ruc", "", new { placeholder = "RUC", @class = "form-control" })
+        @Html.TextBox("RazSoc", "", new { placeholder = "Razón social", @class = "form-control" })
+        @Html.TextBox("FolioNum", "", new { placeholder = "Número", @class = "form-control" })
+        <input class="btn btn-outline-primary" type="submit" value="Buscar" />
+    </div>
+</fieldset>
 }
 
 <table class="table table-sm">
-    <tbody>
+    <thead class="position-static">
         <tr>
             <th>Fecha</th>
             <th>Serie</th>
             <th>Número</th>
             <th>Ruc</th>
             <th>Denominación</th>
-            <th>Valor venta</th>
             <th>Total venta</th>
             <th></th>
             <th></th>
@@ -51,58 +39,60 @@
             <th></th>
             <th></th>
         </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td width="100px">@Html.DisplayFor(modelItem => item.DocDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.SeriesName)</td>
+                <td>@Html.DisplayFor(modelItem => item.FolioNum)</td>
+                <td>@Html.DisplayFor(modelItem => item.LicTradNum)</td>
+                <td>@Html.DisplayFor(modelItem => item.CardName)</td>
+                <td>@Html.DisplayFor(modelItem => item.GrosProfit)</td>
+                <td>@Html.DisplayFor(modelItem => item.DocTotal)</td>
+                @if (string.IsNullOrEmpty(item.U_ResponseCode))
+                {
+                    <td>@Html.ActionLink("Sunat", "FacCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
+                }
+                else if (item.U_ResponseCode == "0")
+                {
+                    <td>@Html.ActionLink("Sunat", "FacCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
+                }
+                else
+                {
+                    <td>@Html.ActionLink("Sunat", "FacCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
+                }
+
+                @if (string.IsNullOrEmpty(item.U_DigestValue))
+                {
+                    <td>@Html.ActionLink("Xml", "GetXml", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
+                }
+                else
+                {
+                    <td>@Html.ActionLink("Xml", "GetXml", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
+                }
+
+                @if (string.IsNullOrEmpty(item.U_ResponseCode))
+                {
+                    <td>@Html.ActionLink("CDR", "GetCdr", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
+                }
+                else if (item.U_ResponseCode == "0")
+                {
+                    <td>@Html.ActionLink("CDR", "GetCdr", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
+                }
+                else
+                {
+                    <td>@Html.ActionLink("CDR", "GetCdr", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
+                }
+
+                <td>@Html.ActionLink("PDF", "GenReport", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
+
+            </tr>
+        }
+
     </tbody>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td width="100px">@Html.DisplayFor(modelItem => item.DocDate)</td>
-            <td>@Html.DisplayFor(modelItem => item.SeriesName)</td>
-            <td>@Html.DisplayFor(modelItem => item.FolioNum)</td>
-            <td>@Html.DisplayFor(modelItem => item.LicTradNum)</td>
-            <td>@Html.DisplayFor(modelItem => item.CardName)</td>
-            <td>@Html.DisplayFor(modelItem => item.GrosProfit)</td>
-            <td>@Html.DisplayFor(modelItem => item.DocTotal)</td>
-            @if (string.IsNullOrEmpty(item.U_ResponseCode))
-            {
-                <td>@Html.ActionLink("Sunat", "FacCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
-            }
-            else if (item.U_ResponseCode == "0")
-            {
-                <td>@Html.ActionLink("Sunat", "FacCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
-            }
-            else
-            {
-                <td>@Html.ActionLink("Sunat", "FacCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
-            }
-
-            @if (string.IsNullOrEmpty(item.U_DigestValue))
-            {
-                <td>@Html.ActionLink("Xml", "GetXml", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
-            }
-            else
-            {
-                <td>@Html.ActionLink("Xml", "GetXml", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
-            }
-
-            @if (string.IsNullOrEmpty(item.U_ResponseCode))
-            {
-                <td>@Html.ActionLink("CDR", "GetCdr", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
-            }
-            else if (item.U_ResponseCode == "0")
-            {
-                <td>@Html.ActionLink("CDR", "GetCdr", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
-            }
-            else
-            {
-                <td>@Html.ActionLink("CDR", "GetCdr", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
-            }
-
-            <td>@Html.ActionLink("PDF", "GenReport", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
-
-        </tr>
-    }
-
 </table>
 
 

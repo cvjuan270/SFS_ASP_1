@@ -30,6 +30,7 @@ namespace SFS_ASP_1.Models
         public virtual DbSet<OINV> OINV { get; set; }
         public virtual DbSet<NNM1> NNM1 { get; set; }
         public virtual DbSet<ODLN> ODLN { get; set; }
+        public virtual DbSet<ORIN> ORIN { get; set; }
     
         public virtual int Actualizar_Rpta_Cdr(Nullable<int> docentry, string u_ResponseCode, string u_Description, string u_DigestValue)
         {

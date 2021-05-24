@@ -1,7 +1,7 @@
 
 namespace Reportes
 {
-     public partial class Report_FT_A4
+     public partial class Report_NC_A4
     {
         #region Component Designer generated code
         /// <summary>
@@ -56,6 +56,7 @@ namespace Reportes
             this.textBox9 = new Telerik.Reporting.TextBox();
             this.barcode1 = new Telerik.Reporting.Barcode();
             this.textBox16 = new Telerik.Reporting.TextBox();
+            this.textBoxTexAdi = new Telerik.Reporting.TextBox();
             this.textBox3 = new Telerik.Reporting.TextBox();
             this.textBox5 = new Telerik.Reporting.TextBox();
             this.textBox13 = new Telerik.Reporting.TextBox();
@@ -71,7 +72,10 @@ namespace Reportes
             this.panel4 = new Telerik.Reporting.Panel();
             this.textBox42 = new Telerik.Reporting.TextBox();
             this.textBox8 = new Telerik.Reporting.TextBox();
-            this.textBoxTexAdi = new Telerik.Reporting.TextBox();
+            this.textBox45 = new Telerik.Reporting.TextBox();
+            this.textBox46 = new Telerik.Reporting.TextBox();
+            this.textBox47 = new Telerik.Reporting.TextBox();
+            this.textBox48 = new Telerik.Reporting.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // groupFooterSection
@@ -123,6 +127,7 @@ namespace Reportes
             this.textBox23.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(72)))), ((int)(((byte)(89)))));
             this.textBox23.Style.Font.Name = "Microsoft Sans Serif";
             this.textBox23.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox23.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             this.textBox23.Value = "=Fields.GrosProfit";
             // 
             // textBox26
@@ -147,6 +152,7 @@ namespace Reportes
             this.textBox25.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(72)))), ((int)(((byte)(89)))));
             this.textBox25.Style.Font.Name = "Microsoft Sans Serif";
             this.textBox25.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox25.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             this.textBox25.Value = "=Fields.VatSum";
             // 
             // textBox28
@@ -171,6 +177,7 @@ namespace Reportes
             this.textBox27.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(72)))), ((int)(((byte)(89)))));
             this.textBox27.Style.Font.Name = "Microsoft Sans Serif";
             this.textBox27.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox27.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             this.textBox27.Value = "=Fields.DocTotal";
             // 
             // panel3
@@ -243,9 +250,9 @@ namespace Reportes
             // 
             // textBox35
             // 
-            this.textBox35.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.5D), Telerik.Reporting.Drawing.Unit.Cm(0.1D));
+            this.textBox35.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.8D), Telerik.Reporting.Drawing.Unit.Cm(0.1D));
             this.textBox35.Name = "textBox35";
-            this.textBox35.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9D), Telerik.Reporting.Drawing.Unit.Point(12D));
+            this.textBox35.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.6D), Telerik.Reporting.Drawing.Unit.Point(12D));
             this.textBox35.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.textBox35.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(72)))), ((int)(((byte)(89)))));
             this.textBox35.Style.Font.Bold = true;
@@ -261,7 +268,7 @@ namespace Reportes
             // 
             this.textBox37.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(0.1D));
             this.textBox37.Name = "textBox37";
-            this.textBox37.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.6D), Telerik.Reporting.Drawing.Unit.Point(12D));
+            this.textBox37.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9D), Telerik.Reporting.Drawing.Unit.Point(12D));
             this.textBox37.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.textBox37.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(72)))), ((int)(((byte)(89)))));
             this.textBox37.Style.Font.Bold = true;
@@ -429,7 +436,7 @@ namespace Reportes
             // 
             this.textBox31.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.9D), Telerik.Reporting.Drawing.Unit.Cm(0.071D));
             this.textBox31.Name = "textBox31";
-            this.textBox31.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.6D), Telerik.Reporting.Drawing.Unit.Point(15D));
+            this.textBox31.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9D), Telerik.Reporting.Drawing.Unit.Point(15D));
             this.textBox31.Style.BorderColor.Default = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.textBox31.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.textBox31.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.None;
@@ -446,9 +453,9 @@ namespace Reportes
             // 
             // textBox32
             // 
-            this.textBox32.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.5D), Telerik.Reporting.Drawing.Unit.Cm(0.071D));
+            this.textBox32.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.8D), Telerik.Reporting.Drawing.Unit.Cm(0.071D));
             this.textBox32.Name = "textBox32";
-            this.textBox32.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.9D), Telerik.Reporting.Drawing.Unit.Point(15D));
+            this.textBox32.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.6D), Telerik.Reporting.Drawing.Unit.Point(15D));
             this.textBox32.Style.BorderColor.Default = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.textBox32.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
             this.textBox32.Style.BorderStyle.Left = Telerik.Reporting.Drawing.BorderType.None;
@@ -555,8 +562,8 @@ namespace Reportes
             this.textBox36.Style.Font.Name = "Microsoft Sans Serif";
             this.textBox36.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBox36.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox36.Value = "\r\nREPRESENTACION IMPRESA DE LA FACTURA ELECTRÓNICA.  PODRÁ CONSULTAR LA GUIA CON " +
-    "SU CLAVE SOL.";
+            this.textBox36.Value = "\r\nREPRESENTACION IMPRESA DE LA NOTA DE CREDITO ELECTRÓNICA.  PODRÁ CONSULTAR LA G" +
+    "UIA CON SU CLAVE SOL.";
             // 
             // textBox38
             // 
@@ -623,7 +630,7 @@ namespace Reportes
             this.textBox1.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox1.Value = "FACTURA ELECTRONICA";
+            this.textBox1.Value = "NOTA DE CREDITO";
             // 
             // textBox4
             // 
@@ -689,7 +696,7 @@ namespace Reportes
             this.barcode1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3D), Telerik.Reporting.Drawing.Unit.Cm(3D));
             this.barcode1.Stretch = true;
             this.barcode1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.barcode1.Value = "=\"6\"+\"|\"+Fields.RucEmi+\"|\"+\"6\"+\"|\"+Fields.LicTradNum+\"|\"+\"01\"+\"|\"+Fields.NumCor+\"" +
+            this.barcode1.Value = "=\"6\"+\"|\"+Fields.RucEmi+\"|\"+\"6\"+\"|\"+Fields.LicTradNum+\"|\"+\"07\"+\"|\"+Fields.NumCor+\"" +
     "|\"+Fields.DocDate+\"|\"+Fields.VatSum+\"|\"+Fields.DocTotal+\"|\"+Fields.U_DigestValue" +
     "";
             // 
@@ -709,6 +716,23 @@ namespace Reportes
             this.textBox16.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox16.TextWrap = true;
             this.textBox16.Value = "=Fields.DirEmi";
+            // 
+            // textBoxTexAdi
+            // 
+            this.textBoxTexAdi.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.2D), Telerik.Reporting.Drawing.Unit.Cm(4.6D));
+            this.textBoxTexAdi.Name = "textBoxTexAdi";
+            this.textBoxTexAdi.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(18.6D), Telerik.Reporting.Drawing.Unit.Cm(0.7D));
+            this.textBoxTexAdi.Style.BorderColor.Default = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxTexAdi.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(72)))), ((int)(((byte)(89)))));
+            this.textBoxTexAdi.Style.Font.Bold = true;
+            this.textBoxTexAdi.Style.Font.Name = "Microsoft Sans Serif";
+            this.textBoxTexAdi.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
+            this.textBoxTexAdi.Style.Font.Strikeout = false;
+            this.textBoxTexAdi.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxTexAdi.Style.LineStyle = Telerik.Reporting.Drawing.LineStyle.Solid;
+            this.textBoxTexAdi.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
+            this.textBoxTexAdi.TextWrap = true;
+            this.textBoxTexAdi.Value = "";
             // 
             // textBox3
             // 
@@ -756,7 +780,7 @@ namespace Reportes
             // 
             this.textBox22.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.8D), Telerik.Reporting.Drawing.Unit.Cm(1.5D));
             this.textBox22.Name = "textBox22";
-            this.textBox22.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.1D), Telerik.Reporting.Drawing.Unit.Point(36.84D));
+            this.textBox22.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.1D), Telerik.Reporting.Drawing.Unit.Point(42.52D));
             this.textBox22.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(72)))), ((int)(((byte)(89)))));
             this.textBox22.Style.Font.Name = "Microsoft Sans Serif";
             this.textBox22.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -821,7 +845,7 @@ namespace Reportes
             // 
             // shape1
             // 
-            this.shape1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.25D), Telerik.Reporting.Drawing.Unit.Cm(2.8D));
+            this.shape1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.25D), Telerik.Reporting.Drawing.Unit.Cm(4.6D));
             this.shape1.Name = "shape1";
             this.shape1.ShapeType = new Telerik.Reporting.Drawing.Shapes.LineShape(Telerik.Reporting.Drawing.Shapes.LineDirection.EW);
             this.shape1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(18.55D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
@@ -832,7 +856,7 @@ namespace Reportes
             // 
             // reportHeaderSection1
             // 
-            this.reportHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(3.3D);
+            this.reportHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(5.5D);
             this.reportHeaderSection1.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.shape1,
             this.panel4});
@@ -852,10 +876,14 @@ namespace Reportes
             this.textBox6,
             this.textBox7,
             this.textBox42,
-            this.textBox8});
+            this.textBox8,
+            this.textBox46,
+            this.textBox45,
+            this.textBox48,
+            this.textBox47});
             this.panel4.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.25D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.panel4.Name = "panel4";
-            this.panel4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(18.55D), Telerik.Reporting.Drawing.Unit.Cm(2.8D));
+            this.panel4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(18.55D), Telerik.Reporting.Drawing.Unit.Cm(4.3D));
             this.panel4.Style.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
             this.panel4.Style.BorderColor.Default = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.panel4.Style.BorderStyle.Default = Telerik.Reporting.Drawing.BorderType.None;
@@ -886,24 +914,49 @@ namespace Reportes
             this.textBox8.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBox8.Value = "Soles";
             // 
-            // textBoxTexAdi
+            // textBox45
             // 
-            this.textBoxTexAdi.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.2D), Telerik.Reporting.Drawing.Unit.Cm(4.6D));
-            this.textBoxTexAdi.Name = "textBoxTexAdi";
-            this.textBoxTexAdi.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(18.6D), Telerik.Reporting.Drawing.Unit.Cm(0.7D));
-            this.textBoxTexAdi.Style.BorderColor.Default = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxTexAdi.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(72)))), ((int)(((byte)(89)))));
-            this.textBoxTexAdi.Style.Font.Bold = true;
-            this.textBoxTexAdi.Style.Font.Name = "Microsoft Sans Serif";
-            this.textBoxTexAdi.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
-            this.textBoxTexAdi.Style.Font.Strikeout = false;
-            this.textBoxTexAdi.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxTexAdi.Style.LineStyle = Telerik.Reporting.Drawing.LineStyle.Solid;
-            this.textBoxTexAdi.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
-            this.textBoxTexAdi.TextWrap = true;
-            this.textBoxTexAdi.Value = "";
+            this.textBox45.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.25D), Telerik.Reporting.Drawing.Unit.Cm(3.2D));
+            this.textBox45.Name = "textBox45";
+            this.textBox45.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.6D), Telerik.Reporting.Drawing.Unit.Point(12D));
+            this.textBox45.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(72)))), ((int)(((byte)(89)))));
+            this.textBox45.Style.Font.Bold = true;
+            this.textBox45.Style.Font.Name = "Microsoft Sans Serif";
+            this.textBox45.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox45.Value = "Doc. Afectado:";
             // 
-            // Report_FT_A4
+            // textBox46
+            // 
+            this.textBox46.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.85D), Telerik.Reporting.Drawing.Unit.Cm(3.2D));
+            this.textBox46.Name = "textBox46";
+            this.textBox46.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.1D), Telerik.Reporting.Drawing.Unit.Point(12D));
+            this.textBox46.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(72)))), ((int)(((byte)(89)))));
+            this.textBox46.Style.Font.Name = "Microsoft Sans Serif";
+            this.textBox46.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox46.Value = "=Fields.DocRef";
+            // 
+            // textBox47
+            // 
+            this.textBox47.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0.25D), Telerik.Reporting.Drawing.Unit.Cm(3.7D));
+            this.textBox47.Name = "textBox47";
+            this.textBox47.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.6D), Telerik.Reporting.Drawing.Unit.Point(12D));
+            this.textBox47.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(72)))), ((int)(((byte)(89)))));
+            this.textBox47.Style.Font.Bold = true;
+            this.textBox47.Style.Font.Name = "Microsoft Sans Serif";
+            this.textBox47.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox47.Value = "Motivo:";
+            // 
+            // textBox48
+            // 
+            this.textBox48.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(2.85D), Telerik.Reporting.Drawing.Unit.Cm(3.7D));
+            this.textBox48.Name = "textBox48";
+            this.textBox48.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.1D), Telerik.Reporting.Drawing.Unit.Point(12D));
+            this.textBox48.Style.Color = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(72)))), ((int)(((byte)(89)))));
+            this.textBox48.Style.Font.Name = "Microsoft Sans Serif";
+            this.textBox48.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox48.Value = "=Fields.TipNot";
+            // 
+            // Report_NC_A4
             // 
             group1.GroupFooter = this.groupFooterSection;
             group1.GroupHeader = this.groupHeaderSection;
@@ -993,5 +1046,9 @@ namespace Reportes
         private Telerik.Reporting.Panel panel4;
         private Telerik.Reporting.TextBox textBox16;
         private Telerik.Reporting.TextBox textBoxTexAdi;
+        private Telerik.Reporting.TextBox textBox46;
+        private Telerik.Reporting.TextBox textBox45;
+        private Telerik.Reporting.TextBox textBox48;
+        private Telerik.Reporting.TextBox textBox47;
     }
 }

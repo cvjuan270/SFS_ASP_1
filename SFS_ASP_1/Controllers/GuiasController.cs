@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using SFS_ASP_1.Controllers.GenDocEle;
 using SFS_ASP_1.Models;
+using Telerik.Reporting.Processing;
 
 namespace SFS_ASP_1.Controllers
 {
@@ -14,11 +17,24 @@ namespace SFS_ASP_1.Controllers
     {
         private SEGURIMAX02Entities db = new SEGURIMAX02Entities();
 
+
         // GET: Guias
+        [OutputCache(Duration = 180)]
+        public ActionResult Index() 
+        {
+            List<DocumentosViewModel> documentos = new List<DocumentosViewModel>();
+            
+            ViewBag.FecIni = DateTime.Now.ToString("yyyy-MM-dd");
+            ViewBag.FecFin = DateTime.Now.ToString("yyyy-MM-dd");
+            
+            return View(documentos);
+        }
+
+        [method:HttpPost]
         public ActionResult Index(DateTime? FecIni, DateTime? FecFin, string Ruc, string RazSoc, int NumCor = 0)
         {
-            var guias = db.ODLN.AsQueryable();
-            guias = from gr in db.ODLN select gr;
+
+            var guias = from gr in db.ODLN select gr;
 
             if (String.IsNullOrEmpty(FecIni.ToString()) && String.IsNullOrEmpty(FecFin.ToString()))
             {
@@ -27,6 +43,7 @@ namespace SFS_ASP_1.Controllers
 
             if (!String.IsNullOrEmpty(FecIni.ToString()) && !String.IsNullOrEmpty(FecFin.ToString()))
             {
+                
                 guias = guias.Where(c => c.DocDate >= FecIni && c.DocDate <= FecFin);
             }
 
@@ -38,104 +55,114 @@ namespace SFS_ASP_1.Controllers
             {
                 guias = guias.Where(c => c.CardName.Contains(RazSoc));
             }
-            return View(guias.ToList());
+
+            var oGuias = guias.ToList();
+            List<DocumentosViewModel> Guias = (from fac in oGuias
+                                               join ser in db.NNM1 on fac.Series equals ser.Series
+                                               orderby fac.FolioNum ascending
+                                               select new DocumentosViewModel
+                                               {
+                                                   DocEntry = fac.DocEntry,
+                                                   DocDate = fac.DocDate,
+                                                   SeriesName = ser.SeriesName,
+                                                   FolioNum = fac.FolioNum,
+                                                   LicTradNum = fac.LicTradNum,
+                                                   CardName = fac.CardName,
+                                                   GrosProfit = fac.GrosProfit,
+                                                   DocTotal = fac.DocTotal,
+                                                   U_ResponseCode = fac.U_ResponseCode,
+                                                   U_Description = fac.U_Description,
+                                                   U_DigestValue = fac.U_DigestValue
+                                               }).ToList();
+            ViewBag.FecIni = DateTime.Now.ToString("yyyy-MM-dd");
+            ViewBag.FecFin = DateTime.Now.ToString("yyyy-MM-dd");
+            return View(Guias);
         }
 
-        // GET: Guias/Details/5
-        public ActionResult Details(int? id)
+        public List<DocumentosViewModel> Filtrar( DateTime? FecIni) 
         {
-            if (id == null)
+            List<DocumentosViewModel> Guias = new List<DocumentosViewModel>();
+
+            var guias = from gr in db.ODLN select gr;
+
+            if (!String.IsNullOrEmpty(FecIni.ToString()))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                guias = guias.Where(c => c.DocDate== FecIni);
+
+                var oGuias = guias.ToList();
+                        Guias = (from fac in oGuias
+                                                   join ser in db.NNM1 on fac.Series equals ser.Series
+                                                   orderby fac.FolioNum ascending
+                                                   select new DocumentosViewModel
+                                                   {
+                                                       DocEntry = fac.DocEntry,
+                                                       DocDate = fac.DocDate,
+                                                       SeriesName = ser.SeriesName,
+                                                       FolioNum = fac.FolioNum,
+                                                       LicTradNum = fac.LicTradNum,
+                                                       CardName = fac.CardName,
+                                                       GrosProfit = fac.GrosProfit,
+                                                       DocTotal = fac.DocTotal,
+                                                       U_ResponseCode = fac.U_ResponseCode,
+                                                       U_Description = fac.U_Description,
+                                                       U_DigestValue = fac.U_DigestValue
+                                                   }).ToList();
             }
-            ODLN oDLN = db.ODLN.Find(id);
-            if (oDLN == null)
-            {
-                return HttpNotFound();
-            }
-            return View(oDLN);
+
+            return Guias;
         }
 
-        // GET: Guias/Create
-        public ActionResult Create()
+        public ActionResult GuiaCreate(int Id)
         {
+            CrearGR crearFT = new CrearGR(Id);
+
+            string[] Respuesta = crearFT.respuestacdr;
+
+            if (Respuesta[0].ToString() == "0")
+            {
+                ViewBag.Success = Respuesta[1];
+                
+            }
+            else
+            {
+                ViewBag.Failed = Respuesta[1];
+            }
+            return RedirectToAction("Index", "Guias");
+
+        }
+
+        public ActionResult GenReport(int Id)
+        {
+            DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC  [dbo].[Consulta_Datos_Reporte_GR] @DocEntry = '{0}'", Id));
+            if (!string.IsNullOrEmpty(dt.Rows[0].ItemArray[9].ToString()))
+            {
+                string RutImg = ConfigurationManager.AppSettings["RutSerGR"].ToString() + ConfigurationManager.AppSettings["IMG"].ToString() + "Logo.png";
+                Reportes.Report_GR_A4 reportToExport = new Reportes.Report_GR_A4(dt, RutImg);
+                ReportProcessor reportProcessor = new ReportProcessor();
+                Telerik.Reporting.InstanceReportSource instanceReportSource = new Telerik.Reporting.InstanceReportSource();
+                instanceReportSource.ReportDocument = reportToExport;
+                RenderingResult result = reportProcessor.RenderReport("PDF", instanceReportSource, null);
+
+                string fileName = dt.Rows[0].ItemArray[0].ToString() + "-09-" + dt.Rows[0].ItemArray[15].ToString() + "." + result.Extension;
+
+                Response.Clear();
+                Response.ContentType = result.MimeType;
+                Response.Cache.SetCacheability(HttpCacheability.Private);
+                Response.Expires = -1;
+                Response.Buffer = true;
+
+                Response.AddHeader("Content-Disposition",
+                                   string.Format("{0};FileName=\"{1}\"",
+                                                 "attachment",
+                                                 fileName));
+                Response.BinaryWrite(result.DocumentBytes);
+                Response.End();
+                ViewBag.Confirmacion = "PDF generado";
+                return File(result.DocumentBytes, "application/pdf");
+            }
+            ViewBag.Error = "Factura sin firmar";
             return View();
         }
-
-        // POST: Guias/Create
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DocEntry,DocNum,DocType,CANCELED,Handwrtten,Printed,DocStatus,InvntSttus,Transfered,ObjType,DocDate,DocDueDate,CardCode,CardName,Address,NumAtCard,VatPercent,VatSum,VatSumFC,DiscPrcnt,DiscSum,DiscSumFC,DocCur,DocRate,DocTotal,DocTotalFC,PaidToDate,PaidFC,GrosProfit,GrosProfFC,Ref1,Ref2,Comments,JrnlMemo,TransId,ReceiptNum,GroupNum,DocTime,SlpCode,TrnspCode,PartSupply,Confirmed,GrossBase,ImportEnt,CreateTran,SummryType,UpdInvnt,UpdCardBal,Instance,Flags,InvntDirec,CntctCode,ShowSCN,FatherCard,SysRate,CurSource,VatSumSy,DiscSumSy,DocTotalSy,PaidSys,FatherType,GrosProfSy,UpdateDate,IsICT,CreateDate,Volume,VolUnit,Weight,WeightUnit,Series,TaxDate,Filler,DataSource,StampNum,isCrin,FinncPriod,UserSign,selfInv,VatPaid,VatPaidFC,VatPaidSys,UserSign2,WddStatus,draftKey,TotalExpns,TotalExpFC,TotalExpSC,DunnLevel,Address2,LogInstanc,Exported,StationID,Indicator,NetProc,AqcsTax,AqcsTaxFC,AqcsTaxSC,CashDiscPr,CashDiscnt,CashDiscFC,CashDiscSC,ShipToCode,LicTradNum,PaymentRef,WTSum,WTSumFC,WTSumSC,RoundDif,RoundDifFC,RoundDifSy,CheckDigit,Form1099,Box1099,submitted,PoPrss,Rounding,RevisionPo,Segment,ReqDate,CancelDate,PickStatus,Pick,BlockDunn,PeyMethod,PayBlock,PayBlckRef,MaxDscn,Reserve,Max1099,CntrlBnk,PickRmrk,ISRCodLine,ExpAppl,ExpApplFC,ExpApplSC,Project,DeferrTax,LetterNum,FromDate,ToDate,WTApplied,WTAppliedF,BoeReserev,AgentCode,WTAppliedS,EquVatSum,EquVatSumF,EquVatSumS,Installmnt,VATFirst,NnSbAmnt,NnSbAmntSC,NbSbAmntFC,ExepAmnt,ExepAmntSC,ExepAmntFC,VatDate,CorrExt,CorrInv,NCorrInv,CEECFlag,BaseAmnt,BaseAmntSC,BaseAmntFC,CtlAccount,BPLId,BPLName,VATRegNum,TxInvRptNo,TxInvRptDt,KVVATCode,WTDetails,SumAbsId,SumRptDate,PIndicator,ManualNum,UseShpdGd,BaseVtAt,BaseVtAtSC,BaseVtAtFC,NnSbVAt,NnSbVAtSC,NbSbVAtFC,ExptVAt,ExptVAtSC,ExptVAtFC,LYPmtAt,LYPmtAtSC,LYPmtAtFC,ExpAnSum,ExpAnSys,ExpAnFrgn,DocSubType,DpmStatus,DpmAmnt,DpmAmntSC,DpmAmntFC,DpmDrawn,DpmPrcnt,PaidSum,PaidSumFc,PaidSumSc,FolioPref,FolioNum,DpmAppl,DpmApplFc,DpmApplSc,LPgFolioN,Header,Footer,Posted,OwnerCode,BPChCode,BPChCntc,PayToCode,IsPaytoBnk,BnkCntry,BankCode,BnkAccount,BnkBranch,isIns,TrackNo,VersionNum,LangCode,BPNameOW,BillToOW,ShipToOW,RetInvoice,ClsDate,MInvNum,MInvDate,SeqCode,Serial,SeriesStr,SubStr,Model,TaxOnExp,TaxOnExpFc,TaxOnExpSc,TaxOnExAp,TaxOnExApF,TaxOnExApS,LastPmnTyp,LndCstNum,UseCorrVat,BlkCredMmo,OpenForLaC,Excised,ExcRefDate,ExcRmvTime,SrvGpPrcnt,DepositNum,CertNum,DutyStatus,AutoCrtFlw,FlwRefDate,FlwRefNum,VatJENum,DpmVat,DpmVatFc,DpmVatSc,DpmAppVat,DpmAppVatF,DpmAppVatS,InsurOp347,IgnRelDoc,BuildDesc,ResidenNum,U_ResponseCode,U_Description,U_TipNotCre,U_DigestValue")] ODLN oDLN)
-        {
-            if (ModelState.IsValid)
-            {
-                db.ODLN.Add(oDLN);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(oDLN);
-        }
-
-        // GET: Guias/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ODLN oDLN = db.ODLN.Find(id);
-            if (oDLN == null)
-            {
-                return HttpNotFound();
-            }
-            return View(oDLN);
-        }
-
-        // POST: Guias/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
-        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DocEntry,DocNum,DocType,CANCELED,Handwrtten,Printed,DocStatus,InvntSttus,Transfered,ObjType,DocDate,DocDueDate,CardCode,CardName,Address,NumAtCard,VatPercent,VatSum,VatSumFC,DiscPrcnt,DiscSum,DiscSumFC,DocCur,DocRate,DocTotal,DocTotalFC,PaidToDate,PaidFC,GrosProfit,GrosProfFC,Ref1,Ref2,Comments,JrnlMemo,TransId,ReceiptNum,GroupNum,DocTime,SlpCode,TrnspCode,PartSupply,Confirmed,GrossBase,ImportEnt,CreateTran,SummryType,UpdInvnt,UpdCardBal,Instance,Flags,InvntDirec,CntctCode,ShowSCN,FatherCard,SysRate,CurSource,VatSumSy,DiscSumSy,DocTotalSy,PaidSys,FatherType,GrosProfSy,UpdateDate,IsICT,CreateDate,Volume,VolUnit,Weight,WeightUnit,Series,TaxDate,Filler,DataSource,StampNum,isCrin,FinncPriod,UserSign,selfInv,VatPaid,VatPaidFC,VatPaidSys,UserSign2,WddStatus,draftKey,TotalExpns,TotalExpFC,TotalExpSC,DunnLevel,Address2,LogInstanc,Exported,StationID,Indicator,NetProc,AqcsTax,AqcsTaxFC,AqcsTaxSC,CashDiscPr,CashDiscnt,CashDiscFC,CashDiscSC,ShipToCode,LicTradNum,PaymentRef,WTSum,WTSumFC,WTSumSC,RoundDif,RoundDifFC,RoundDifSy,CheckDigit,Form1099,Box1099,submitted,PoPrss,Rounding,RevisionPo,Segment,ReqDate,CancelDate,PickStatus,Pick,BlockDunn,PeyMethod,PayBlock,PayBlckRef,MaxDscn,Reserve,Max1099,CntrlBnk,PickRmrk,ISRCodLine,ExpAppl,ExpApplFC,ExpApplSC,Project,DeferrTax,LetterNum,FromDate,ToDate,WTApplied,WTAppliedF,BoeReserev,AgentCode,WTAppliedS,EquVatSum,EquVatSumF,EquVatSumS,Installmnt,VATFirst,NnSbAmnt,NnSbAmntSC,NbSbAmntFC,ExepAmnt,ExepAmntSC,ExepAmntFC,VatDate,CorrExt,CorrInv,NCorrInv,CEECFlag,BaseAmnt,BaseAmntSC,BaseAmntFC,CtlAccount,BPLId,BPLName,VATRegNum,TxInvRptNo,TxInvRptDt,KVVATCode,WTDetails,SumAbsId,SumRptDate,PIndicator,ManualNum,UseShpdGd,BaseVtAt,BaseVtAtSC,BaseVtAtFC,NnSbVAt,NnSbVAtSC,NbSbVAtFC,ExptVAt,ExptVAtSC,ExptVAtFC,LYPmtAt,LYPmtAtSC,LYPmtAtFC,ExpAnSum,ExpAnSys,ExpAnFrgn,DocSubType,DpmStatus,DpmAmnt,DpmAmntSC,DpmAmntFC,DpmDrawn,DpmPrcnt,PaidSum,PaidSumFc,PaidSumSc,FolioPref,FolioNum,DpmAppl,DpmApplFc,DpmApplSc,LPgFolioN,Header,Footer,Posted,OwnerCode,BPChCode,BPChCntc,PayToCode,IsPaytoBnk,BnkCntry,BankCode,BnkAccount,BnkBranch,isIns,TrackNo,VersionNum,LangCode,BPNameOW,BillToOW,ShipToOW,RetInvoice,ClsDate,MInvNum,MInvDate,SeqCode,Serial,SeriesStr,SubStr,Model,TaxOnExp,TaxOnExpFc,TaxOnExpSc,TaxOnExAp,TaxOnExApF,TaxOnExApS,LastPmnTyp,LndCstNum,UseCorrVat,BlkCredMmo,OpenForLaC,Excised,ExcRefDate,ExcRmvTime,SrvGpPrcnt,DepositNum,CertNum,DutyStatus,AutoCrtFlw,FlwRefDate,FlwRefNum,VatJENum,DpmVat,DpmVatFc,DpmVatSc,DpmAppVat,DpmAppVatF,DpmAppVatS,InsurOp347,IgnRelDoc,BuildDesc,ResidenNum,U_ResponseCode,U_Description,U_TipNotCre,U_DigestValue")] ODLN oDLN)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(oDLN).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(oDLN);
-        }
-
-        // GET: Guias/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ODLN oDLN = db.ODLN.Find(id);
-            if (oDLN == null)
-            {
-                return HttpNotFound();
-            }
-            return View(oDLN);
-        }
-
-        // POST: Guias/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            ODLN oDLN = db.ODLN.Find(id);
-            db.ODLN.Remove(oDLN);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

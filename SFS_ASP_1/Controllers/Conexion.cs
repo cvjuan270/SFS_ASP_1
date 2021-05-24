@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace SFS_ASP_1.Model
+namespace SFS_ASP_1.Controllers
 {
     public class Conexion
     {
