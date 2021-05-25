@@ -486,7 +486,7 @@ namespace Reportes
             this.textBox15.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox15.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.textBox15.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Cm(0D);
-            this.textBox15.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox15.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             this.textBox15.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Top;
             this.textBox15.Value = "=Fields.Price";
             // 
@@ -506,7 +506,7 @@ namespace Reportes
             this.textBox18.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox18.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.textBox18.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Cm(0D);
-            this.textBox18.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox18.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             this.textBox18.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Top;
             this.textBox18.Value = "=Fields.PriceAfVAT";
             // 
@@ -526,7 +526,7 @@ namespace Reportes
             this.textBox21.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(10D);
             this.textBox21.Style.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(153)))), ((int)(((byte)(153)))));
             this.textBox21.Style.Padding.Bottom = Telerik.Reporting.Drawing.Unit.Cm(0D);
-            this.textBox21.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox21.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
             this.textBox21.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Top;
             this.textBox21.Value = "=Fields.LineTotal";
             // 

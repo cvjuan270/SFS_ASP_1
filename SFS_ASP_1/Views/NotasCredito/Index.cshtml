@@ -40,52 +40,65 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td width="100px">@Html.DisplayFor(modelItem => item.DocDate)</td>
-            <td>@Html.DisplayFor(modelItem => item.SeriesName)</td>
-            <td>@Html.DisplayFor(modelItem => item.FolioNum)</td>
-            <td>@Html.DisplayFor(modelItem => item.LicTradNum)</td>
-            <td>@Html.DisplayFor(modelItem => item.CardName)</td>
-            <td>@Html.DisplayFor(modelItem => item.DocTotal)</td>
+<tr>
+    <td width="100px">@Html.DisplayFor(modelItem => item.DocDate)</td>
+    <td>@Html.DisplayFor(modelItem => item.SeriesName)</td>
+    <td>@Html.DisplayFor(modelItem => item.FolioNum)</td>
+    <td>@Html.DisplayFor(modelItem => item.LicTradNum)</td>
+    <td>@Html.DisplayFor(modelItem => item.CardName)</td>
+    <td>@Html.DisplayFor(modelItem => item.DocTotal)</td>
 
-            @if (string.IsNullOrEmpty(item.U_ResponseCode))
-            {
-                <td>@Html.ActionLink("Sunat", "NotCredCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
-            }
-            else if (item.U_ResponseCode == "0")
-            {
-                <td>@Html.ActionLink("Sunat", "NotCredCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
-            }
-            else
-            {
-                <td>@Html.ActionLink("Sunat", "NotCredCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
-            }
+    @if (string.IsNullOrEmpty(item.U_ResponseCode))
+    {
+        <td>@Html.ActionLink("Sunat", "NotCredCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
+    }
+    else if (item.U_ResponseCode == "0")
+    {
+        <td>@Html.ActionLink("Sunat", "NotCredCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
+    }
+    else
+    {
+        <td>@Html.ActionLink("Sunat", "NotCredCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
+    }
 
-            @if (string.IsNullOrEmpty(item.U_DigestValue))
-            {
-                <td>@Html.ActionLink("Xml", "GetXml", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
-            }
-            else
-            {
-                <td>@Html.ActionLink("Xml", "GetXml", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
-            }
+    @if (string.IsNullOrEmpty(item.U_DigestValue))
+    {
+        <td>
+            <div style="font-size:10px" class="alert alert-dark" role="alert">Documento sin firmar</div>
+        </td>
+    }
+    else
+    {
+        <td>
+            <div style="font-size:10px" class="alert alert-success" role="alert">XML Firmado</div>
+        </td>
+    }
 
-            @if (string.IsNullOrEmpty(item.U_ResponseCode))
-            {
-                <td>@Html.ActionLink("CDR", "GetCdr", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
-            }
-            else if (item.U_ResponseCode == "0")
-            {
-                <td>@Html.ActionLink("CDR", "GetCdr", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
-            }
-            else
-            {
-                <td>@Html.ActionLink("CDR", "GetCdr", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
-            }
+    @if (string.IsNullOrEmpty(item.U_ResponseCode))
+    {
 
-            <td>@Html.ActionLink("PDF", "GenReport", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
+        <td>
+            <div style="font-size:10px" class="alert alert-dark" role="alert">D.E. no enviado</div>
+        </td>
 
-        </tr>
+    }
+    else if (item.U_ResponseCode == "0")
+    {
+        <td>
+            <div style="font-size:10px" class="alert alert-success" role="alert">@item.U_Description</div>
+        </td>
+
+    }
+    else
+    {
+        <td>
+            <div style="font-size:10px" class="alert alert-danger" role="alert">@item.U_Description</div>
+        </td>
+    }
+
+    <td>@Html.ActionLink("PDF", "GenReport", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
+
+</tr>
     }
 
 </table>
