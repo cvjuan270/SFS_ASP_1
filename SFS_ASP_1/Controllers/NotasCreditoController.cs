@@ -11,6 +11,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Telerik.Reporting.Processing;
+using Telerik.ReportViewer.Html5;
 
 
 
@@ -22,37 +23,12 @@ namespace SFS_ASP_1.Controllers
         // GET: NotasCredito
         public ActionResult Index() 
         {
-            var atenciones = from cr in db.ORIN select cr;
-
-
-
-
-           var NC = atenciones.Where(c => c.DocDate >= DateTime.Now);
-
-
-            var Facturas = atenciones.ToList();
-            List<DocumentosViewModel> notas = (from fac in NC
-                                                  join ser in db.NNM1 on fac.Series equals ser.Series
-                                                  orderby fac.FolioNum ascending
-                                                  select new DocumentosViewModel
-                                                  {
-                                                      DocEntry = fac.DocEntry,
-                                                      DocDate = fac.DocDate,
-                                                      SeriesName = ser.SeriesName,
-                                                      FolioNum = fac.FolioNum,
-                                                      LicTradNum = fac.LicTradNum,
-                                                      CardName = fac.CardName,
-                                                      GrosProfit = fac.GrosProfit,
-                                                      DocTotal = fac.DocTotal,
-                                                      U_ResponseCode = fac.U_ResponseCode,
-                                                      U_Description = fac.U_Description,
-                                                      U_DigestValue = fac.U_DigestValue
-                                                  }).ToList();
+            List<DocumentosViewModel> documentos = new List<DocumentosViewModel>();
 
             ViewBag.FecIni = DateTime.Now.ToString("yyyy-MM-dd");
             ViewBag.FecFin = DateTime.Now.ToString("yyyy-MM-dd");
 
-            return View(notas);
+            return View(documentos);
         }
 
         [HttpPost]
@@ -110,19 +86,12 @@ namespace SFS_ASP_1.Controllers
 
             if (Respuesta[0].ToString() == "0")
             {
-                ViewBag.Success = Respuesta[1];
+                return RedirectToAction("Index");
             }
             else
             {
-                if (Respuesta[0].ToString() == "100")
-                {
-                    ViewBag.Failed = Respuesta[1];
-                }
-                ViewBag.Failed = Respuesta[1];
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, Respuesta[1]);
             }
-
-
-            return RedirectToAction("Index", "NotasCredito");
         }
 
         public ActionResult GenReport(int Id)
@@ -155,11 +124,15 @@ namespace SFS_ASP_1.Controllers
                     System.IO.File.WriteAllBytes(RutPdf, result.DocumentBytes);
                 }
                 Response.End();
+
                 ViewBag.Confirmacion = "PDF generado";
                 return File(result.DocumentBytes, "application/pdf");
+                
             }
-            ViewBag.Error = "Nota de credito sin firmar";
-            return View();
+            ViewBag.Error = "Nota de credito sin Firma digital";
+
+           
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Documento electronico sin firma Digital");
         }
         protected override void Dispose(bool disposing)
         {

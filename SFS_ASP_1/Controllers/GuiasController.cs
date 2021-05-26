@@ -16,8 +16,7 @@ namespace SFS_ASP_1.Controllers
     public class GuiasController : Controller
     {
         private SEGURIMAX02Entities db = new SEGURIMAX02Entities();
-
-
+      
         // GET: Guias
         [OutputCache(Duration = 180)]
         public ActionResult Index() 
@@ -79,39 +78,6 @@ namespace SFS_ASP_1.Controllers
             return View(Guias);
         }
 
-        public List<DocumentosViewModel> Filtrar( DateTime? FecIni) 
-        {
-            List<DocumentosViewModel> Guias = new List<DocumentosViewModel>();
-
-            var guias = from gr in db.ODLN select gr;
-
-            if (!String.IsNullOrEmpty(FecIni.ToString()))
-            {
-                guias = guias.Where(c => c.DocDate== FecIni);
-
-                var oGuias = guias.ToList();
-                        Guias = (from fac in oGuias
-                                                   join ser in db.NNM1 on fac.Series equals ser.Series
-                                                   orderby fac.FolioNum ascending
-                                                   select new DocumentosViewModel
-                                                   {
-                                                       DocEntry = fac.DocEntry,
-                                                       DocDate = fac.DocDate,
-                                                       SeriesName = ser.SeriesName,
-                                                       FolioNum = fac.FolioNum,
-                                                       LicTradNum = fac.LicTradNum,
-                                                       CardName = fac.CardName,
-                                                       GrosProfit = fac.GrosProfit,
-                                                       DocTotal = fac.DocTotal,
-                                                       U_ResponseCode = fac.U_ResponseCode,
-                                                       U_Description = fac.U_Description,
-                                                       U_DigestValue = fac.U_DigestValue
-                                                   }).ToList();
-            }
-
-            return Guias;
-        }
-
         public ActionResult GuiaCreate(int Id)
         {
             CrearGR crearFT = new CrearGR(Id);
@@ -120,14 +86,13 @@ namespace SFS_ASP_1.Controllers
 
             if (Respuesta[0].ToString() == "0")
             {
-                ViewBag.Success = Respuesta[1];
-                
+                return RedirectToAction("Index");
+
             }
             else
             {
-                ViewBag.Failed = Respuesta[1];
-            }
-            return RedirectToAction("Index", "Guias");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, Respuesta[1]);
+            }   
 
         }
 
@@ -161,8 +126,10 @@ namespace SFS_ASP_1.Controllers
                     System.IO.File.WriteAllBytes(RutPdf, result.DocumentBytes);
                 }
                 Response.End();
+
                 ViewBag.Confirmacion = "PDF generado";
                 return File(result.DocumentBytes, "application/pdf");
+                
             }
             ViewBag.Error = "Guia sin Firma digital";
 

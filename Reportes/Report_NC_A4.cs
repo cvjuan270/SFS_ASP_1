@@ -20,16 +20,16 @@ namespace Reportes
             //
             // TODO: Add any constructor code after InitializeComponent call
             //
-            if (File.Exists("TexAdi_FT.txt"))
+            if (File.Exists("~/TexAdi_FT.txt"))
             {
 
-                this.textBoxTexAdi.Value = File.ReadAllText("TexAdi_FT.txt");
+                this.textBoxTexAdi.Value = File.ReadAllText("~/TexAdi_FT.txt");
             }
             else
             {
                 try
                 {
-                    using (StreamWriter sw = File.CreateText("TexAdi_FT.txt"))
+                    using (StreamWriter sw = File.CreateText("~/TexAdi_FT.txt"))
                     {
                         sw.WriteLine("--");
                     }
