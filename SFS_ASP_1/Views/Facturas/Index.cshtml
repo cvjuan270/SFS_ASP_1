@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SFS_ASP_1.Models.DocumentosViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Facturas";
 }
 
 <h2>Facturas</h2>
@@ -50,7 +50,7 @@
             <td>@Html.DisplayFor(modelItem => item.FolioNum)</td>
             <td>@Html.DisplayFor(modelItem => item.LicTradNum)</td>
             <td>@Html.DisplayFor(modelItem => item.CardName)</td>
-            
+
             <td>@Html.DisplayFor(modelItem => item.DocTotal)</td>
             @if (string.IsNullOrEmpty(item.U_ResponseCode))
             {
@@ -84,14 +84,14 @@
                 <td>
                     <div style="font-size:10px" class="alert alert-dark" role="alert">D.E. no enviado</div>
                 </td>
-                
+
             }
             else if (item.U_ResponseCode == "0")
             {
                 <td>
                     <div style="font-size:10px" class="alert alert-success" role="alert">@item.U_Description</div>
                 </td>
-               
+
             }
             else
             {
@@ -101,6 +101,7 @@
             }
 
             <td>@Html.ActionLink("PDF", "GenReport", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
+            <td>@Html.ActionLink("E-mail", "MailCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
 
         </tr>
         }

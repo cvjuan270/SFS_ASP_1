@@ -1,0 +1,151 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Email" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CuerpoCorreo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;!DOCTYPE html&gt;
+
+&lt;html lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=":u8" class="ii gt"&gt;
+        &lt;div id=":u7" class="a3s aXjCH "&gt;
+            &lt;div&gt;
+                &lt;div&gt;
+                    &lt;table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" style="font-family:Helvetica neue,Helvetica,Arial,Verdana,sans-serif" width="100%"&gt;
+                        &lt;tr&gt;
+                            &lt;td colspan="1" rowspan="1"&gt;
+                                &lt;table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="520px"&gt;
+                                    &lt;tr&gt;
+                                        &lt;td colspan="1" rowspan="1" valign="top"&gt;
+                                            &lt;table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%"&gt;
+                                                &lt;tr&gt;
+                                                    &lt;td align="left" colspan="1" rowspan="1" style="color:#05AFF2; font-size:20px;line-height:32px;text-align:left;font-weight:bold" valign="top"&gt;
+														&lt;span&gt;@DocType @SerNumCor&lt;/span&gt;
+													&lt;/td&gt;
+                                                &lt;/tr&gt;
+                                                &lt;tr&gt;
+                                                    &lt;td colspan="1" rowspan="1" style="color:#05AFF2;padding-bottom:15px" valign="top"&gt;
+                                                        &lt;hr color="#cccccc" size="1" /&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                                &lt;tr align="left" colspan="1" rowspan="1" valign="top"&gt;
+                                                    &lt;td&gt;
+                                                        &lt;div style="padding:10px 0; background-color: #05AFF2; color: white;"&gt;
+                                                            &lt;p style="padding:0 30px"&gt;Estimados @NomSocNeg&lt;/p&gt;
+														&lt;/div&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                                &lt;tr align="left" colspan="1" rowspan="1" valign="top"&gt;
+                                                    &lt;td&gt;
+                                                        &lt;div style="padding:10px 30px; color: #0D1826;"&gt;
+                                                            Se adjunta en este mensaje una @DocType
+                                                        &lt;/div&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                                &lt;tr align="left" colspan="1" rowspan="1" valign="top"&gt;
+                                                    &lt;td&gt;
+                                                        &lt;div style="padding:5px 0"&gt;
+                                                            &lt;ul&gt;
+                                                                &lt;li&gt;&lt;b&gt;@DocType @SerNumCor &lt;/b&gt;&lt;/li&gt;
+                                                                &lt;li&gt;Fecha de emisión: &lt;b&gt;@FecEmi&lt;/b&gt;&lt;/li&gt;
+                                                                &lt;li&gt;Total: &lt;b&gt;S/ @TotDoc&lt;/b&gt;&lt;/li&gt;
+                                                            &lt;/ul&gt;
+                                                        &lt;/div&gt;
+                                                        &lt;div style="padding:5px 30px; color: #0D1826;"&gt;
+															&lt;p&gt;
+																Se adjunta en este mensaje el documento electrónico en formatos PDF y XML. La representación impresa en PDF tiene la misma validez que una emitida de manera tradicional.
+															&lt;/p&gt;
+														&lt;/div&gt;
+                                                        &lt;div style="padding:5px 30px; background-color: #F2A413; color: white;"&gt;
+                                                            Representación impresa de la @DocType generada desde el sistema facturador SUNAT. Puede verificarla utilizando su clave SOL&lt;br /&gt;
+                                                            &lt;br /&gt;
+                                                            &lt;a href="https://e-consulta.sunat.gob.pe/ol-ti-itconsvalicpe/ConsValiCpe.htm"&gt;https://e-consulta.sunat.gob.pe/ol-ti-itconsvalicpe/ConsValiCpe.htm&lt;/a&gt;&lt;/div&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                                &lt;tr align="left" colspan="1" rowspan="1" valign="top"&gt;
+                                                    &lt;td&gt;
+                                                        &lt;div style="padding:0 30px"&gt;
+                                                            &lt;table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%"&gt;
+                                                                &lt;tr valign="top"&gt;
+                                                                    &lt;td align="left" colspan="1" rowspan="1" style="padding-top:10px;text-align:left; color: #0D1826;" valign="top"&gt;
+																		&lt;span&gt;Atentamente&lt;/span&gt;:&lt;br clear="none" /&gt;
+																				@RazSoc&lt;br clear="none" /&gt;
+                                                                        &lt;span&gt;&lt;b&gt;RUC @Ruc&lt;/b&gt;&lt;/span&gt;&lt;br clear="none" /&gt;
+                                                                        &lt;br /&gt;
+                                                                    &lt;/td&gt;
+                                                                &lt;/tr&gt;
+                                                            &lt;/table&gt;
+                                                        &lt;/div&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                                &lt;tr&gt;
+                                                    &lt;td colspan="1" rowspan="1"&gt;
+                                                        &lt;table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%"&gt;
+                                                            &lt;tr&gt;
+                                                                &lt;td colspan="1" rowspan="1" style="color:white; text-align: center; font-size: small; background-color: #0D1826;" valign="top" width="100%"&gt;
+                                                                    TaGre-System&lt;br /&gt;
+                                                                    993433774&lt;/td&gt;
+                                                            &lt;/tr&gt;
+                                                            &lt;tr&gt;
+                                                                &lt;td colspan="1" rowspan="1"&gt;
+                                                                    &lt;div&gt;
+                                                                        &lt;table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%"&gt;
+                                                                            &lt;tr&gt;
+                                                                                &lt;td align="left" colspan="1" rowspan="1" style="padding-top:10px;color:#707070;font-size:12px;line-height:14px;text-align:left" valign="top"&gt;
+                                                                                    &lt;br clear="none" /&gt;
+                                                                                &lt;/td&gt;
+                                                                            &lt;/tr&gt;
+                                                                        &lt;/table&gt;
+                                                                    &lt;/div&gt;
+                                                                &lt;/td&gt;
+                                                            &lt;/tr&gt;
+                                                        &lt;/table&gt;
+                                                    &lt;/td&gt;
+                                                &lt;/tr&gt;
+                                            &lt;/table&gt;
+                                        &lt;/td&gt;
+                                    &lt;/tr&gt;
+                                &lt;/table&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+                    &lt;div class="yj6qo"&gt;
+                    &lt;/div&gt;
+                    &lt;div class="adL"&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="adL"&gt;
+                &lt;/div&gt;
+                &lt;div class="adL"&gt;
+                &lt;/div&gt;
+                &lt;div class="adL"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div id=":uz" class="hq gt"&gt;
+        &lt;div class="hp"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</Value>
+    </Setting>
+    <Setting Name="UsuarioSMTP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">cvjuan270@gmail.com</Value>
+    </Setting>
+    <Setting Name="ServidorSMTP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">smtp.gmail.com</Value>
+    </Setting>
+    <Setting Name="PuertoSMTP" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">587</Value>
+    </Setting>
+    <Setting Name="PassUsuaSMTP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Gmail161290270</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

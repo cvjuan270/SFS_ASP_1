@@ -261,5 +261,7 @@ namespace SFS_ASP_1.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Get_Tipo_NC_Result>("Get_Tipo_NC", docEntryParameter);
         }
+
+        
     }
 }

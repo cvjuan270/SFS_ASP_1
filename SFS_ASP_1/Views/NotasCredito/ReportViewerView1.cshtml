@@ -1,6 +1,7 @@
 @using SFS_ASP_1.Views.NotasCredito
 @using Telerik.Reporting
 @using Telerik.ReportViewer.Mvc
+@using Reportes;
 @{
     Layout = null;
 }
@@ -48,7 +49,7 @@
         // For more information please check http://www.telerik.com/help/reporting/html5-report-viewer-templates.html.
         // .TemplateUrl(Url.Content("~/ReportViewer/templates/telerikReportViewerTemplate-13.0.19.116.html"))
         // Strongly typed ReportSource - TypeReportSource or UriReportSource.
-        .ReportSource(new TypeReportSource() { TypeName = "Reportes.Report_NC_A4, Reportes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" })
+        .ReportSource(new TypeReportSource() { TypeName = typeof(Report_NC_A4).AssemblyQualifiedName })
         // Specifies whether the viewer is in interactive or print preview mode.
         // PrintPreview - Displays the paginated report as if it is printed on paper. Interactivity is not enabled.
         // Interactive - Displays the report in its original width and height with no paging. Additionally interactivity is enabled.
@@ -67,10 +68,10 @@
         .PersistSession(false)
         // Sets the print mode of the viewer.
         .PrintMode(PrintMode.AutoSelect)
-		//If set to true shows the Send Mail Message toolbar button
+        //If set to true shows the Send Mail Message toolbar button
         .SendEmail(new SendEmail { Enabled = false })
-		//Switches accessibility mode ON or OFF.
-		.EnableAccessibility(true)
+        //Switches accessibility mode ON or OFF.
+        .EnableAccessibility(true)
 )
 
 </body>
