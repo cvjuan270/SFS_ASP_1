@@ -1,0 +1,116 @@
+USE [SEGURIMAX02]
+GO
+/****** Object:  StoredProcedure [dbo].[Consulta_DatosCorreo_FT]    Script Date: 9/06/2021 14:25:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Consulta_DatosCorreo_FT]
+@DocEntry int
+AS
+BEGIN
+DECLARE @CompnyName VARCHAR(100)
+DECLARE @RevOffice VARCHAR(11)
+DECLARE @DocNum1 INT
+
+
+SET @CompnyName = (SELECT CompnyName FROM OADM)
+SET @RevOffice = (SELECT RevOffice FROM OADM)
+--SET @DocNum1 = @DocNum
+
+--IF @DocNum1 >10000
+--BEGIN
+--SET @DocNum1 = @DocNum1-10000
+--END
+
+
+SELECT @CompnyName, @RevOffice,
+T1.SeriesName+'-'+convert(varchar,T0.FolioNum),
+
+T0.CardName,t2.E_Mail, CONVERT(varchar,T0.DocDate,103)
+		,CONVERT(varchar,CONVERT(MONEY,T0.DocTotal))
+FROM OINV T0 INNER JOIN NNM1 T1 ON T0.Series = T1.Series INNER JOIN OCRD t2 ON t0.CardCode = t2.CardCode 
+where t0.DocEntry = @DocEntry
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Consulta_DatosCorreo_GR]    Script Date: 9/06/2021 14:25:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Consulta_DatosCorreo_GR]
+@DocEntry int
+AS
+BEGIN
+DECLARE @CompnyName VARCHAR(100)
+DECLARE @RevOffice VARCHAR(11)
+DECLARE @DocNum1 INT
+
+
+SET @CompnyName = (SELECT CompnyName FROM OADM)
+SET @RevOffice = (SELECT RevOffice FROM OADM)
+--SET @DocNum1 = @DocNum
+
+--IF @DocNum1 >10000
+--BEGIN
+--SET @DocNum1 = @DocNum1-10000
+--END
+
+
+SELECT @CompnyName, @RevOffice,
+T1.SeriesName+'-'+convert(varchar,T0.FolioNum),
+
+T0.CardName,t2.E_Mail, CONVERT(varchar,T0.DocDate,103)
+		,CONVERT(varchar,CONVERT(MONEY,T0.DocTotal))
+FROM ODLN T0 INNER JOIN NNM1 T1 ON T0.Series = T1.Series INNER JOIN OCRD t2 ON t0.CardCode = t2.CardCode 
+where t0.DocEntry = @DocEntry
+END
+GO
+/****** Object:  StoredProcedure [dbo].[Consulta_DatosCorreo_NC]    Script Date: 9/06/2021 14:25:30 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[Consulta_DatosCorreo_NC]
+@DocEntry int
+AS
+BEGIN
+DECLARE @CompnyName VARCHAR(100)
+DECLARE @RevOffice VARCHAR(11)
+DECLARE @DocNum1 INT
+
+
+SET @CompnyName = (SELECT CompnyName FROM OADM)
+SET @RevOffice = (SELECT RevOffice FROM OADM)
+--SET @DocNum1 = @DocNum
+
+--IF @DocNum1 >10000
+--BEGIN
+--SET @DocNum1 = @DocNum1-10000
+--END
+
+
+SELECT @CompnyName, @RevOffice,
+T1.SeriesName+'-'+convert(varchar,T0.FolioNum),
+
+T0.CardName,t2.E_Mail, CONVERT(varchar,T0.DocDate,103)
+		,CONVERT(varchar,CONVERT(MONEY,T0.DocTotal))
+FROM ORIN T0 INNER JOIN NNM1 T1 ON T0.Series = T1.Series INNER JOIN OCRD t2 ON t0.CardCode = t2.CardCode 
+where t0.DocEntry = @DocEntry
+END
+GO

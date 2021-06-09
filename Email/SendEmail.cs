@@ -5,24 +5,26 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Email
+namespace SendEmail
 {
     public class SendEmail
     {
-        public string[] oSendEmail(string DocType, string SerNumCor, string NomSocNeg, string FecEmi, string DocTot, string RazSoc, string Ruc, string RutPdf, string RutXml, string ToEmail)
+        public static string[] oSendEmail(string DocType, string SerNumCor, string NomSocNeg, string FecEmi, string DocTot, string RazSoc, string Ruc, string RutPdf, string RutXml, string ToEmail)
         {
             string[] respuestaSendcorreo = new string[2];
             List<string> Archivo = new List<string>();
             try
             {
-                string Mensaje = Settings.Default.CuerpoCorreo;
-                Mensaje = Mensaje.Replace("@SerNumCor", SerNumCor);
-                Mensaje = Mensaje.Replace("@NomSocNeg", NomSocNeg);
-                Mensaje = Mensaje.Replace("@FecEmi", FecEmi);
-                Mensaje = Mensaje.Replace("@TotDoc", DocTot);
-                Mensaje = Mensaje.Replace("@RazSoc", RazSoc);
-                Mensaje = Mensaje.Replace("@Ruc", Ruc);
-                Mensaje = Mensaje.Replace("@DocType", DocType);
+                //string Mensaje = Settings.Default.CuerpoCorreo;
+                //Mensaje = Mensaje.Replace("@SerNumCor", SerNumCor);
+                //Mensaje = Mensaje.Replace("@NomSocNeg", NomSocNeg);
+                //Mensaje = Mensaje.Replace("@FecEmi", FecEmi);
+                //Mensaje = Mensaje.Replace("@TotDoc", DocTot);
+                //Mensaje = Mensaje.Replace("@RazSoc", RazSoc);
+                //Mensaje = Mensaje.Replace("@Ruc", Ruc);
+                //Mensaje = Mensaje.Replace("@DocType", DocType);
+
+                string Mensaje = "Se adjunta a este mensaje la: " + DocType+" Por S/ "+DocTot;
 
                 Archivo.Clear();
                 Archivo.Add(RutPdf);
@@ -30,7 +32,7 @@ namespace Email
 
                 MailMessage mail = new MailMessage();
                 mail.To.Add(new MailAddress(ToEmail));
-                mail.From = new MailAddress(Settings.Default.UsuarioSMTP);
+                mail.From = new MailAddress("cvjuan270@gmail.com");
                 mail.Subject = RazSoc + " | " + DocType + ": " + SerNumCor;
                 mail.Body = Mensaje;
                 mail.IsBodyHtml = true;
@@ -43,9 +45,9 @@ namespace Email
 
                 /**/
 
-                SmtpClient client = new SmtpClient(Settings.Default.ServidorSMTP.ToString(), Settings.Default.PuertoSMTP);
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
 
-                client.Credentials = new System.Net.NetworkCredential(Settings.Default.UsuarioSMTP, Settings.Default.PassUsuaSMTP);
+                client.Credentials = new System.Net.NetworkCredential("cvjuan270@gmail.com", "Gmail161290270");
                 client.EnableSsl = true;
                 client.Send(mail);
                 mail.Dispose();

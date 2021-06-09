@@ -16,7 +16,6 @@ namespace SFS_ASP_1.Models
         public string ToEmail { get; set; }
         public string  RupPdf { get; set; }
         public string RutXml { get; set; }
-        public string MyProperty { get; set; }
         public string DocType { get; set; }
         public string SerNumCor { get; set; }
         public string NomSocNeg { get; set; }

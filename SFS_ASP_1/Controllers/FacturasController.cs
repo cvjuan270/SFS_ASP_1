@@ -140,6 +140,11 @@ namespace SFS_ASP_1.Controllers
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Documento electronico sin firma Digital");
         }
+        public ActionResult MailCreate(int Id) 
+        {
+
+            return RedirectToAction("create","Emails",new {Id = Id,oDocType = "01"});
+        }
 
         protected override void Dispose(bool disposing)
         {
