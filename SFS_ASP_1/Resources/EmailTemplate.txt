@@ -1,0 +1,121 @@
+﻿    <div id=":u8" class="ii gt">
+        <div id=":u7" class="a3s aXjCH ">
+            <div>
+                <div>
+                    <table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" style="font-family:Helvetica neue,Helvetica,Arial,Verdana,sans-serif" width="100%">
+                        <tr>
+                            <td colspan="1" rowspan="1">
+                                <table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="520px">
+                                    <tr>
+                                        <td colspan="1" rowspan="1" valign="top">
+                                            <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td align="left" colspan="1" rowspan="1" style="color:#05AFF2; font-size:20px;line-height:32px;text-align:left;font-weight:bold" valign="top">
+														<span>@DocType @SerNumCor</span>
+													</td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="1" rowspan="1" style="color:#05AFF2;padding-bottom:15px" valign="top">
+                                                        <hr color="#cccccc" size="1" />
+                                                    </td>
+                                                </tr>
+                                                <tr align="left" colspan="1" rowspan="1" valign="top">
+                                                    <td>
+                                                        <div style="padding:10px 0; background-color: #05AFF2; color: white;">
+                                                            <p style="padding:0 30px">Estimados @NomSocNeg</p>
+														</div>
+                                                    </td>
+                                                </tr>
+                                                <tr align="left" colspan="1" rowspan="1" valign="top">
+                                                    <td>
+                                                        <div style="padding:10px 30px; color: #0D1826;">
+                                                            Se adjunta en este mensaje una @DocType
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr align="left" colspan="1" rowspan="1" valign="top">
+                                                    <td>
+                                                        <div style="padding:5px 0">
+                                                            <ul>
+                                                                <li><b>@DocType @SerNumCor </b></li>
+                                                                <li>Fecha de emisión: <b>@FecEmi</b></li>
+                                                                <li>Total: <b>S/ @TotDoc</b></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div style="padding:5px 30px; color: #0D1826;">
+															<p>
+																Se adjunta en este mensaje el documento electrónico en formatos PDF y XML. La representación impresa en PDF tiene la misma validez que una emitida de manera tradicional.
+															</p>
+														</div>
+                                                        <div style="padding:5px 30px; background-color: #F2A413; color: white;">
+                                                            Representación impresa de la @DocType generada desde el sistema facturador SUNAT. Puede verificarla utilizando su clave SOL<br />
+                                                            <br />
+                                                            <a href="https://e-consulta.sunat.gob.pe/ol-ti-itconsvalicpe/ConsValiCpe.htm">https://e-consulta.sunat.gob.pe/ol-ti-itconsvalicpe/ConsValiCpe.htm</a></div>
+                                                    </td>
+                                                </tr>
+                                                <tr align="left" colspan="1" rowspan="1" valign="top">
+                                                    <td>
+                                                        <div style="padding:0 30px">
+                                                            <table bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                <tr valign="top">
+                                                                    <td align="left" colspan="1" rowspan="1" style="padding-top:10px;text-align:left; color: #0D1826;" valign="top">
+																		<span>Atentamente</span>:<br clear="none" />
+																				@RazSoc<br clear="none" />
+                                                                        <span><b>RUC @Ruc</b></span><br clear="none" />
+                                                                        <br />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="1" rowspan="1">
+                                                        <table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                            <tr>
+                                                                <td colspan="1" rowspan="1" style="color:white; text-align: center; font-size: small; background-color: #0D1826;" valign="top" width="100%">
+                                                                    TaGre-System<br />
+                                                                    993433774</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="1" rowspan="1">
+                                                                    <div>
+                                                                        <table align="center" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                                            <tr>
+                                                                                <td align="left" colspan="1" rowspan="1" style="padding-top:10px;color:#707070;font-size:12px;line-height:14px;text-align:left" valign="top">
+                                                                                    <br clear="none" />
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="yj6qo">
+                    </div>
+                    <div class="adL">
+                    </div>
+                </div>
+                <div class="adL">
+                </div>
+                <div class="adL">
+                </div>
+                <div class="adL">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id=":uz" class="hq gt">
+        <div class="hp">
+        </div>
+    </div>
+

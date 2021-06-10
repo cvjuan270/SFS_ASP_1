@@ -13,18 +13,20 @@ namespace SendEmail
         {
             string[] respuestaSendcorreo = new string[2];
             List<string> Archivo = new List<string>();
+
+            string path = System.IO.Directory.GetCurrentDirectory()+@"\Resources\EmailTemplate.txt";
+            string Mensaje = System.IO.File.ReadAllText(path);
             try
             {
-                //string Mensaje = Settings.Default.CuerpoCorreo;
-                //Mensaje = Mensaje.Replace("@SerNumCor", SerNumCor);
-                //Mensaje = Mensaje.Replace("@NomSocNeg", NomSocNeg);
-                //Mensaje = Mensaje.Replace("@FecEmi", FecEmi);
-                //Mensaje = Mensaje.Replace("@TotDoc", DocTot);
-                //Mensaje = Mensaje.Replace("@RazSoc", RazSoc);
-                //Mensaje = Mensaje.Replace("@Ruc", Ruc);
-                //Mensaje = Mensaje.Replace("@DocType", DocType);
+                Mensaje = Mensaje.Replace("@SerNumCor", SerNumCor);
+                Mensaje = Mensaje.Replace("@NomSocNeg", NomSocNeg);
+                Mensaje = Mensaje.Replace("@FecEmi", FecEmi);
+                Mensaje = Mensaje.Replace("@TotDoc", DocTot);
+                Mensaje = Mensaje.Replace("@RazSoc", RazSoc);
+                Mensaje = Mensaje.Replace("@Ruc", Ruc);
+                Mensaje = Mensaje.Replace("@DocType", DocType);
 
-                string Mensaje = "Se adjunta a este mensaje la: " + DocType+" Por S/ "+DocTot;
+                
 
                 Archivo.Clear();
                 Archivo.Add(RutPdf);

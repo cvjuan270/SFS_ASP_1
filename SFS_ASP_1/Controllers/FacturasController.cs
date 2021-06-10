@@ -1,5 +1,4 @@
 ﻿using SFS_ASP_1.Controllers.GenDocEle;
-using SFS_ASP_1.Model;
 using SFS_ASP_1.Models;
 using System;
 using System.Collections.Generic;

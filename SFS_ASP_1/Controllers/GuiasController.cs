@@ -1,14 +1,13 @@
-﻿using System;
+﻿using SFS_ASP_1.Controllers.GenDocEle;
+using SFS_ASP_1.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using SFS_ASP_1.Controllers.GenDocEle;
-using SFS_ASP_1.Models;
 using Telerik.Reporting.Processing;
 
 namespace SFS_ASP_1.Controllers
@@ -135,7 +134,13 @@ namespace SFS_ASP_1.Controllers
 
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest,"Documento electronico sin firma Digital");
         }
-  
+
+        public ActionResult MailCreate(int Id)
+        {
+
+            return RedirectToAction("create", "Emails", new { Id = Id, oDocType = "09" });
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

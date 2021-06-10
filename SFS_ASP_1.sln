@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFS_ASP_1", "SFS_ASP_1\SFS_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reportes", "Reportes\Reportes.csproj", "{D2FF2EAF-2F6C-4132-9BC4-BB4173EEF840}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendEmail", "Email\SendEmail.csproj", "{3C734613-0539-4C92-BA46-67CCC21A1567}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{D2FF2EAF-2F6C-4132-9BC4-BB4173EEF840}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2FF2EAF-2F6C-4132-9BC4-BB4173EEF840}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2FF2EAF-2F6C-4132-9BC4-BB4173EEF840}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C734613-0539-4C92-BA46-67CCC21A1567}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C734613-0539-4C92-BA46-67CCC21A1567}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C734613-0539-4C92-BA46-67CCC21A1567}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C734613-0539-4C92-BA46-67CCC21A1567}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

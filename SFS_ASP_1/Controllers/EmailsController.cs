@@ -1,13 +1,11 @@
-﻿using System;
+﻿using SFS_ASP_1.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+using System.Net.Mail;
 using System.Web.Mvc;
-using SFS_ASP_1.Models;
+
 
 namespace SFS_ASP_1.Controllers
 {
@@ -19,9 +17,9 @@ namespace SFS_ASP_1.Controllers
         // GET: Emails/Create
         public ActionResult Create(int Id,string oDocType)
         {
-           
             Email email = new Email();
-     
+          
+
             switch (oDocType)
             {
                 case "01":
@@ -69,20 +67,63 @@ namespace SFS_ASP_1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ToEmail,RupPdf,RutXml,MyProperty,DocType,SerNumCor,NomSocNeg,FecEmi,TotDoc,RazSoc,Ruc")] Email email)
+        public ActionResult Create([Bind(Include = "Id,ToEmail,RupPdf,RutXml,MyProperty,DocType,SerNumCor,NomSocNeg,FecEmi,TotDoc,RazSoc,Ruc,Mensaje")] Email email)
         {
             if (ModelState.IsValid)
             {
-               
-                    var resEmail = SendEmail.SendEmail.oSendEmail(email.DocType, email.SerNumCor, email.NomSocNeg, email.FecEmi, email.TotDoc, email.RazSoc, email.Ruc, email.RupPdf, email.RutXml, email.ToEmail);
+                string[] respuestaSendcorreo = new string[2];
+                List<string> Archivo = new List<string>();
 
-                if (resEmail[0]=="0")
+               string path= Server.MapPath("~") + @"\Resources\EmailTemplate.txt";
+                string Mensaje = System.IO.File.ReadAllText(path);
+                try
                 {
-                    ViewBag.Confirmacion = resEmail[0] + "|" + resEmail[1];
+                    Mensaje = Mensaje.Replace("@SerNumCor", email.SerNumCor);
+                    Mensaje = Mensaje.Replace("@NomSocNeg", email.NomSocNeg);
+                    Mensaje = Mensaje.Replace("@FecEmi", email.FecEmi);
+                    Mensaje = Mensaje.Replace("@TotDoc", email.TotDoc);
+                    Mensaje = Mensaje.Replace("@RazSoc", email.RazSoc);
+                    Mensaje = Mensaje.Replace("@Ruc", email.Ruc);
+                    Mensaje = Mensaje.Replace("@DocType", email.DocType);
+
+
+
+                    Archivo.Clear();
+                    Archivo.Add(email.RupPdf);
+                    Archivo.Add(email.RutXml);
+
+                    MailMessage mail = new MailMessage();
+                    mail.To.Add(new MailAddress(email.ToEmail));
+                    mail.From = new MailAddress(ConfigurationManager.AppSettings["UsuarioSMTP"].ToString());
+                    mail.Subject = email.RazSoc + " | " + email.DocType + ": " + email.SerNumCor;
+                    mail.Body = Mensaje;
+                    mail.IsBodyHtml = true;
+
+                    /**/
+                    foreach (string Adjunto in Archivo)
+                    {
+                        mail.Attachments.Add(new Attachment(Adjunto));
+                    }
+
+                    /**/
+
+                    SmtpClient client = new SmtpClient(ConfigurationManager.AppSettings["ServidorSMTP"].ToString(), Int32.Parse(ConfigurationManager.AppSettings["PuertoSMTP"].ToString()));
+
+                    client.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["UsuarioSMTP"].ToString(), ConfigurationManager.AppSettings["PassUsuaSMTP"].ToString());
+                    client.EnableSsl = true;
+                    client.Send(mail);
+                    mail.Dispose();
+                    Archivo.Clear();
+                    client.Dispose();
+                    respuestaSendcorreo[0] = "0";
+                    respuestaSendcorreo[1] = "Mensaje enviado con exito";
+                    ViewBag.Confirmacion = respuestaSendcorreo[0] + "|" + respuestaSendcorreo[1];
                 }
-                else
+                catch (Exception ex)
                 {
-                    ViewBag.Error = resEmail[0] + "|" + resEmail[1];
+                    respuestaSendcorreo[0] = "1";
+                    respuestaSendcorreo[1] = "Excepción: " + ex.Message;
+                    ViewBag.Error = respuestaSendcorreo[0] + "|" + respuestaSendcorreo[1];
                 }
                 
                 

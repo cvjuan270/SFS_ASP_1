@@ -23,5 +23,6 @@ namespace SFS_ASP_1.Models
         public string TotDoc { get; set; }
         public string RazSoc { get; set; }
         public string Ruc { get; set; }
+        public string Mensaje { get; set; }
     }
 }

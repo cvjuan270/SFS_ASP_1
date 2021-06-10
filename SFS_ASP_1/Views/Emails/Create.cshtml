@@ -11,69 +11,68 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Email</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.ToEmail, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ToEmail, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ToEmail, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DocType, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SerNumCor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Cliente</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NomSocNeg, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Fecha de emisión</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FecEmi, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Total soles</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TotDoc, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-
-            </div>
-        </div>
-
-        @Html.HiddenFor(model => model.RazSoc, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.HiddenFor(model => model.Ruc, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.HiddenFor(model => model.RupPdf, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.HiddenFor(model => model.RutXml, new { htmlAttributes = new { @class = "form-control" } })
-
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Enviar Email" class="btn btn-light" />
-            </div>
+<div class="form-horizontal">
+    <h4>Email</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.ToEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ToEmail, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ToEmail, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DocType, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SerNumCor, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Cliente</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NomSocNeg, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Fecha de emisión</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FecEmi, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Total soles</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TotDoc, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.RazSoc, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.HiddenFor(model => model.Ruc, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.HiddenFor(model => model.RupPdf, new { htmlAttributes = new { @class = "form-control" } })
+    @Html.HiddenFor(model => model.RutXml, new { htmlAttributes = new { @class = "form-control" } })
+  
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Enviar Email" class="btn btn-light" />
+        </div>
+    </div>
+</div>
 }
 
 <div>
