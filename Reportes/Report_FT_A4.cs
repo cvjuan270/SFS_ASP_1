@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -17,34 +18,62 @@ namespace Reportes
             //
             InitializeComponent();
 
-            //
-            // TODO: Add any constructor code after InitializeComponent call
-            //
-            //if (File.Exists("TexAdi_FT.txt"))
-            //{
+            Datos datos = new Datos();
+            string directorio = @"D:\DatosReportes\";
+            string path = directorio + dt.Rows[0].ItemArray[0].ToString() + "Datos.json";
 
-            //    this.textBoxTexAdi.Value = File.ReadAllText("TexAdi_FT.txt");
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        using (StreamWriter sw = File.CreateText("TexAdi_FT.txt"))
-            //        {
-            //            sw.WriteLine("--");
-            //        }
+            if (File.Exists(path))
+            {
+                datos = JsonConvert.DeserializeObject<Datos>(File.ReadAllText(path));
+            }
+            else
+            {
+                if (!Directory.Exists(directorio))
+                {
+                    Directory.CreateDirectory(directorio);
+                }
 
-            //    }
-            //    catch (System.Exception)
-            //    {
+                try
+                {
+                    using (StreamWriter sw = File.CreateText(path))
+                    {
 
-            //    }
-            //    this.textBoxTexAdi.Value = "-";
-            
+                        string json = JsonConvert.SerializeObject(datos, Formatting.Indented);
+
+                        sw.Write(json);
+                        sw.Close();
+                    }
+
+                }
+                catch (System.Exception ex)
+                {
+
+                }
+            }
+
+            this.TextBoxContacto.Value = datos.Contacto;
+            this.textBoxCelular.Value = datos.Celular;
+            this.textBoxEmail.Value = datos.Email;
+            this.textBoxFacebook.Value = datos.Facebook;
+            this.textBoxTextoLibre.Value = datos.TextoLibre;
+            this.textBoxCta.Value = datos.Cta;
+
+            /**/
+            //this.textBox29.Style.BackgroundColor = Color.Transparent;
+            //this.textBox30.Style.BackgroundColor = Color.Transparent;
+            //this.textBox32.Style.BackgroundColor = Color.Transparent;
+            //this.textBox31.Style.BackgroundColor = Color.Transparent;
+            //this.textBox36.Style.BackgroundColor = Color.Transparent;
+            //this.textBox15.Style.BackgroundColor = Color.Transparent;
+            //this.textBox18.Style.BackgroundColor = Color.Transparent;
+            //this.textBox21.Style.BackgroundColor = Color.Transparent;
+            ///**/
             this.pictureBox1.Value = Image.FromFile(PathLogo);
            // this.panel1.Style.BorderStyle.Default = BorderType.Outset;
             this.DataSource = dt;
             //this.table1.DataSource = dt;
+
+           
         }
 
 

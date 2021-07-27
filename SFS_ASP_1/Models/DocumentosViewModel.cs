@@ -18,5 +18,7 @@ namespace SFS_ASP_1.Models
         public string U_ResponseCode { get; set; }
         public string U_Description { get; set; }
         public string U_DigestValue { get; set; }
+        public string InvntStatus { get; set; }
+
     }
 }

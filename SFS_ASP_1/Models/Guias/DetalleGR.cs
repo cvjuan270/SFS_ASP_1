@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SFS_ASP_1.Model
+namespace SFS_ASP_1.Models.Guias
 {
     public class DetalleGR
     {

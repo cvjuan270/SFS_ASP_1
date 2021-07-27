@@ -104,7 +104,8 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Reportes">
+    <Reference Include="Reportes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Reportes\bin\Debug\Reportes.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
@@ -247,9 +248,11 @@
     <Compile Include="Controllers\Conexion.cs" />
     <Compile Include="Controllers\EmailsController.cs" />
     <Compile Include="Controllers\FacturasController.cs" />
-    <Compile Include="Controllers\GenDocEle\CrearNC.cs" />
-    <Compile Include="Controllers\GenDocEle\CrearGR.cs" />
-    <Compile Include="Controllers\GenDocEle\CrearFT.cs" />
+    <Compile Include="Controllers\GenDocEle\CreaDE.cs" />
+    <Compile Include="Controllers\GenDocEle\CreaJsonFT.cs" />
+    <Compile Include="Controllers\GenDocEle\CrearJsonGR.cs" />
+    <Compile Include="Controllers\GenDocEle\CrearJsonNC.cs" />
+    <Compile Include="Controllers\GenDocEle\FirmaDE.cs" />
     <Compile Include="Controllers\GuiasController.cs" />
     <Compile Include="Controllers\Helper\CorreoElectronico.cs" />
     <Compile Include="Controllers\Helper\LeeCdr.cs" />
@@ -264,6 +267,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\DatosDE.cs" />
     <Compile Include="Models\Email.cs" />
     <Compile Include="Models\Factura\AdicionalCabecera.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
@@ -350,6 +354,7 @@
     <Compile Include="Models\Guias\RootGR.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JsonDoc.cs" />
+    <Compile Include="Models\ListaBandejaFacturador.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NNM1.cs">
       <DependentUpon>DB_Context.tt</DependentUpon>

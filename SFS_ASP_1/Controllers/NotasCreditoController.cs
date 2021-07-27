@@ -77,9 +77,9 @@ namespace SFS_ASP_1.Controllers
        
         public ActionResult NotCredCreate(int Id)
         {
-           CrearNC crearNC = new CrearNC(Id);
 
-            string[] Respuesta = crearNC.respuestacdr;
+
+            string[] Respuesta = null;
 
             if (Respuesta[0].ToString() == "0")
             {

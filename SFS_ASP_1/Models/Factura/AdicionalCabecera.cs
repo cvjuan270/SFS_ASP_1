@@ -1,4 +1,4 @@
-﻿namespace SFS_ASP_1.Model
+﻿namespace SFS_ASP_1.Models.Factura
 {
     public class AdicionalCabecera
     {

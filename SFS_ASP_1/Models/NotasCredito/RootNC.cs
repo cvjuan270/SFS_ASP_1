@@ -1,13 +1,9 @@
-﻿using SFS_ASP_1.Model;
-using System;
+﻿using SFS_ASP_1.Models.Factura;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SFS_ASP_1.Models.NotasCreadito
 {
-     public class RootNC
+    public class RootNC
     {
         public CabeceraNC cabecera { get; set; }
         public List<Detalle> detalle { get; set; }

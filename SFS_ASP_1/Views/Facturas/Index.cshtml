@@ -5,26 +5,26 @@
 }
 
 <h2>Facturas</h2>
-<h4 class="text-danger">@ViewBag.Error</h4>
-<h4 class="text-success">@ViewBag.Confirmacion</h4>
+<p class="alert-danger">@ViewBag.Error</p>
+<p class="alert-success">@ViewBag.Success</p>
 
-@using (Html.BeginForm("Index","Facturas",FormMethod.Post))
+@using (Html.BeginForm("Index", "Facturas", FormMethod.Post))
 {
-<fieldset>
-    <legend>Criterios de búsqueda</legend>
-    <div class="form-inline">
-        <input id="FecIni" name="FecIni" class="form-control" type="date" value="@ViewBag.FecIni" />
-        <input id="FecFin" name="FecFin" class="form-control" type="date" value="@ViewBag.FecFin" />
+    <fieldset>
+        <legend>Criterios de búsqueda</legend>
+        <div class="form-inline">
+            <input id="FecIni" name="FecIni" class="form-control" type="date" value="@ViewBag.FecIni" />
+            <input id="FecFin" name="FecFin" class="form-control" type="date" value="@ViewBag.FecFin" />
 
-        @Html.TextBox("Ruc", "", new { placeholder = "RUC", @class = "form-control" })
-        @Html.TextBox("RazSoc", "", new { placeholder = "Razón social", @class = "form-control" })
-        @Html.TextBox("FolioNum", "", new { placeholder = "Número", @class = "form-control" })
-        <input class="btn btn-outline-primary" type="submit" value="Buscar" />
-    </div>
-</fieldset>
+            @Html.TextBox("Ruc", "", new { placeholder = "RUC", @class = "form-control" })
+            @Html.TextBox("RazSoc", "", new { placeholder = "Razón social", @class = "form-control" })
+            @Html.TextBox("FolioNum", "", new { placeholder = "Número", @class = "form-control" })
+            <input class="btn btn-outline-primary" type="submit" value="Buscar" />
+        </div>
+    </fieldset>
 }
 
-<table class="table table-sm">
+<table id="table_id" class="table table-sm" style="font-size:11px">
     <thead class="position-static">
         <tr>
             <th>Fecha</th>
@@ -33,85 +33,110 @@
             <th>Ruc</th>
             <th>Denominación</th>
             <th>Total venta</th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
+            <th>btnSunat</th>
+            <th>XML</th>
+            <th>CDR</th>
+            <th>PDF</th>
+            <th>Email</th>
         </tr>
     </thead>
     <tbody>
 
         @foreach (var item in Model)
         {
-        <tr>
-            <td width="100px">@Html.DisplayFor(modelItem => item.DocDate)</td>
-            <td>@Html.DisplayFor(modelItem => item.SeriesName)</td>
-            <td>@Html.DisplayFor(modelItem => item.FolioNum)</td>
-            <td>@Html.DisplayFor(modelItem => item.LicTradNum)</td>
-            <td>@Html.DisplayFor(modelItem => item.CardName)</td>
 
-            <td>@Html.DisplayFor(modelItem => item.DocTotal)</td>
-            @if (string.IsNullOrEmpty(item.U_ResponseCode))
-            {
-                <td>@Html.ActionLink("Sunat", "FacCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
-            }
-            else if (item.U_ResponseCode == "0")
-            {
-                <td>@Html.ActionLink("Sunat", "FacCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
-            }
-            else
-            {
-                <td>@Html.ActionLink("Sunat", "FacCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
-            }
+            <tr>
+                <td width="100px">@Html.DisplayFor(modelItem => item.DocDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.SeriesName)</td>
+                <td>@Html.DisplayFor(modelItem => item.FolioNum)</td>
+                <td>@Html.DisplayFor(modelItem => item.LicTradNum)</td>
+                <td>@Html.DisplayFor(modelItem => item.CardName)</td>
 
-            @if (string.IsNullOrEmpty(item.U_DigestValue))
-            {
-                <td>
-                    <div style="font-size:10px" class="alert alert-dark" role="alert">Documento sin firmar</div>
-                </td>
-            }
-            else
-            {
-                <td>
-                    <div style="font-size:10px" class="alert alert-success" role="alert">XML Firmado</div>
-                </td>
-            }
+                <td style="text-align:right">@Html.DisplayFor(modelItem => item.DocTotal)</td>
 
-            @if (string.IsNullOrEmpty(item.U_ResponseCode))
-            {
+                @if (item.InvntStatus == "C")
+                {
+                    <td>
+                        <span class="badge badge-secondary">Anulada con NC</span>
+                    </td>
+                }
+                else
+                {
 
-                <td>
-                    <div style="font-size:10px" class="alert alert-dark" role="alert">D.E. no enviado</div>
-                </td>
+                    if (string.IsNullOrEmpty(item.U_ResponseCode))
+                    {
+                        <td>@Html.ActionLink("Sunat", "FacCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-outline-secondary btn-sm", @style = "width:85px" })</td>
 
-            }
-            else if (item.U_ResponseCode == "0")
-            {
-                <td>
-                    <div style="font-size:10px" class="alert alert-success" role="alert">@item.U_Description</div>
-                </td>
+                    }
+                    else if (item.U_ResponseCode == "0")
+                    {
+                        <td>@Html.ActionLink("Sunat", "FacCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-primary btn-sm", @style = "width:85px" })</td>
+                    }
+                    else
+                    {
+                        <td>@Html.ActionLink("Sunat", "FacCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
+                    }
+                }
 
-            }
-            else
-            {
-                <td>
-                    <div style="font-size:10px" class="alert alert-danger" role="alert">@item.U_Description</div>
-                </td>
-            }
+                @if (string.IsNullOrEmpty(item.U_DigestValue))
+                {
+                    <td>
+                        <span class="badge badge-warning">Documento sin firmar</span>
 
-            <td>@Html.ActionLink("PDF", "GenReport", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
-            <td>@Html.ActionLink("E-mail", "MailCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <span class="badge badge-success"> XML Firmado</span>
+                    </td>
+                }
 
-        </tr>
+                @if (string.IsNullOrEmpty(item.U_ResponseCode))
+                {
+
+                    <td>
+                        <span class="badge badge-warning">  D.E. no enviado</span>
+
+                    </td>
+
+                }
+                else if (item.U_ResponseCode == "0")
+                {
+                    <td>
+                        <span class="badge badge-success">@item.U_Description</span>
+
+                    </td>
+
+                }
+                else
+                {
+                    <td class="table-danger" style="font-size:10px">
+                        <span class="badge badge-danger">@item.U_Description</span>
+
+                    </td>
+                }
+
+                <td>@Html.ActionLink("PDF", "GenReport", new { id = item.DocEntry }, htmlAttributes: new { @class = "badge badge-primary", @style = "width:85px" })</td>
+                <td>@Html.ActionLink("E-mail", "MailCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "badge badge-primary", @style = "width:85px" })</td>
+
+            </tr>
         }
 
     </tbody>
 </table>
 
 
-<script>
-    function GetClientReport() {
-        window.open("/{ControllerName}/GenReport", "_blank");
-    };
-</script>
+@section scripts{
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.min.js")
+
+    <script>
+        $(document).ready(function () {
+            $("#table_id").DataTable({
+                "pageLengt": 10,
+                "order": [[2, "desc"]]
+            });
+        })
+    </script>
+
+}

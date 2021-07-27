@@ -79,9 +79,9 @@ namespace SFS_ASP_1.Controllers
 
         public ActionResult GuiaCreate(int Id)
         {
-            CrearGR crearFT = new CrearGR(Id);
 
-            string[] Respuesta = crearFT.respuestacdr;
+
+            string[] Respuesta = null;
 
             if (Respuesta[0].ToString() == "0")
             {

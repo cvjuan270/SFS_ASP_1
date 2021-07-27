@@ -4,8 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Telerik.Reporting.Processing;
@@ -16,55 +19,87 @@ namespace SFS_ASP_1.Controllers
 
     public class FacturasController : Controller
     {
+        
         private SEGURIMAX02Entities db = new SEGURIMAX02Entities();
+
+        private static DateTime FecAct = DateTime.Now.Date;
+        private static DateTime PriDia = new DateTime(FecAct.Year, FecAct.Month, 1);
+        private  static DateTime  UltDia = PriDia.AddMonths(1).AddDays(-1);
+        private static string Error, Success;
+
+        public  IQueryable<DocumentosViewModel> queryable() 
+        {
+            IQueryable<DocumentosViewModel> query = (from ft in db.OINV
+                                                     join ser in db.NNM1 on ft.Series equals ser.Series
+                                                     orderby ft.FolioNum ascending
+                                                     select new DocumentosViewModel
+                                                     {
+                                                         DocEntry = ft.DocEntry,
+                                                         DocDate = ft.DocDate,
+                                                         SeriesName = ser.SeriesName,
+                                                         FolioNum = ft.FolioNum,
+                                                         LicTradNum = ft.LicTradNum,
+                                                         CardName = ft.CardName,
+                                                         GrosProfit = ft.GrosProfit,
+                                                         DocTotal = ft.DocTotal,
+                                                         U_ResponseCode = ft.U_ResponseCode,
+                                                         U_Description = ft.U_Description,
+                                                         U_DigestValue = ft.U_DigestValue,
+                                                         InvntStatus = ft.InvntSttus
+
+                                                     });
+            return query;
+        }
 
         // GET: Facturas
         public ActionResult Index()
         {
-            List<DocumentosViewModel> documentos = new List<DocumentosViewModel>();
+            
+            ViewBag.FecIni =PriDia.ToString("yyyy-MM-dd");
+            ViewBag.FecFin = UltDia.ToString("yyyy-MM-dd");
+            ViewBag.Error = Error;
+            ViewBag.Success = Success;
 
-            ViewBag.FecIni = DateTime.Now.ToString("yyyy-MM-dd");
-            ViewBag.FecFin = DateTime.Now.ToString("yyyy-MM-dd");
+            var query = queryable();
+            query = query.Where(d => d.DocDate >= PriDia && d.DocDate <=UltDia);
 
-            return View(documentos);
-
+            return View(query.ToList()); ;
         }
 
         [method:HttpPost]
-        public ActionResult Index(DateTime? FecIni, DateTime? FecFin, string Ruc, string RazSoc, int NumCor = 0)
+        public ActionResult Index(DateTime? FecIni, DateTime? FecFin, string Ruc, string RazSoc, int FolioNum = 0)
         {
-            var  atenciones = from cr in db.OINV select cr;
-            if (String.IsNullOrEmpty(FecIni.ToString()) && String.IsNullOrEmpty(FecFin.ToString()))
+            ViewBag.FecIni = PriDia.ToString("yyyy-MM-dd");
+            ViewBag.FecFin = UltDia.ToString("yyyy-MM-dd");
+            var query = queryable();
+
+            if (FolioNum != 0)
             {
-                atenciones = atenciones.Where(c => c.DocDate >= DateTime.Now && c.DocDate <= DateTime.Now);
+                query = query.Where(c => c.FolioNum == FolioNum);
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(FecIni.ToString()) && String.IsNullOrEmpty(FecFin.ToString()))
+                {
+                    query = query.Where(c => c.DocDate >= PriDia && c.DocDate <= UltDia);
+                }
+
+                if (!String.IsNullOrEmpty(FecIni.ToString()) && !String.IsNullOrEmpty(FecFin.ToString()))
+                {
+                    query = query.Where(c => c.DocDate >= FecIni && c.DocDate <= FecFin);
+                }
+
+                if (!String.IsNullOrEmpty(Ruc))
+                {
+                    query = query.Where(c => c.LicTradNum.Contains(Ruc));
+                }
+                if (!String.IsNullOrEmpty(RazSoc))
+                {
+                    query = query.Where(c => c.CardName.Contains(RazSoc));
+                }
             }
 
-            if (!String.IsNullOrEmpty(FecIni.ToString()) && !String.IsNullOrEmpty(FecFin.ToString()))
-            {
-                atenciones = atenciones.Where(c => c.DocDate >= FecIni && c.DocDate <= FecFin);
-            }
-
-            if (!String.IsNullOrEmpty(Ruc))
-            {
-                atenciones = atenciones.Where(c => c.LicTradNum.Contains(Ruc));
-            }
-            if (!String.IsNullOrEmpty(RazSoc))
-            {
-                atenciones = atenciones.Where(c => c.CardName.Contains(RazSoc));
-            }
-            
-
-            var Facturas = atenciones.ToList();
-            List<DocumentosViewModel> facturas = (from fac in Facturas
-                                               join ser in db.NNM1 on fac.Series equals ser.Series
-                                               orderby fac.FolioNum ascending
-                                               select new DocumentosViewModel { DocEntry = fac.DocEntry, DocDate = fac.DocDate, SeriesName = ser.SeriesName, FolioNum = fac.FolioNum,
-                                                   LicTradNum = fac.LicTradNum, CardName = fac.CardName, GrosProfit = fac.GrosProfit, DocTotal = fac.DocTotal,
-                                                   U_ResponseCode = fac.U_ResponseCode, U_Description = fac.U_Description, U_DigestValue = fac.U_DigestValue }).ToList();
-
-            ViewBag.FecIni = DateTime.Now.ToString("yyyy-MM-dd");
-            ViewBag.FecFin = DateTime.Now.ToString("yyyy-MM-dd");
-            return View(facturas);
+            return View(query.ToList());
         }
 
         // GET: Facturas/Details/5
@@ -82,21 +117,23 @@ namespace SFS_ASP_1.Controllers
             return View(oINV);
         }
 
-        public ActionResult FacCreate(int Id)
+        public async Task<ActionResult> FacCreate(int Id)
         {
-            CrearFT crearFT = new CrearFT(Id);
+            
+            var datos= CreaDE._CreaDE("01", Id);
 
-            string[] Respuesta = crearFT.respuestacdr;
+            var Respuesta =  await FirmaDE.PostFirmaXml(datos);
+            await FirmaDE.PostEnvioXml(datos);
 
-            if (Respuesta[0].ToString()=="0")
+            if (Respuesta[0] == "02" || Respuesta[0]=="03"|| Respuesta[0] == "04"|| Respuesta[0] == "11"|| Respuesta[0] == "12")
             {
+                Success = Respuesta[0] + "|" + Respuesta[1];
                 return RedirectToAction("Index");
             }
             else
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, Respuesta[1]);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, Respuesta[0]+"|"+ Respuesta[1]);
             }
-
         }
 
         public ActionResult GenReport( int Id) 
