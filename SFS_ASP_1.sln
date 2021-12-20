@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFS_ASP_1", "SFS_ASP_1\SFS_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reportes", "Reportes\Reportes.csproj", "{D2FF2EAF-2F6C-4132-9BC4-BB4173EEF840}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{F4A78777-4BC2-4550-951F-370D40DDE454}"
+	ProjectSection(SolutionItems) = preProject
+		CreaStoreProcedureDAtosPago3.sql = CreaStoreProcedureDAtosPago3.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
