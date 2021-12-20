@@ -1,4 +1,3 @@
-using Newtonsoft.Json;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -22,45 +21,27 @@ namespace Reportes
             // TODO: Add any constructor code after InitializeComponent call
             //
 
-            Datos datos = new Datos();
-            string directorio = @"D:\DatosReportes\";
-            string path = directorio + dt.Rows[0].ItemArray[0].ToString() + "Datos.json";
-
-            if (File.Exists(path))
+            if (File.Exists("TexAdi_GR.txt"))
             {
-                datos = JsonConvert.DeserializeObject<Datos>(File.ReadAllText(path));
+
+                this.textBoxTexAdi.Value= File.ReadAllText("TexAdi_GR.txt");
             }
             else
             {
-                if (!Directory.Exists(directorio))
-                {
-                    Directory.CreateDirectory(directorio);
-                }
-
                 try
                 {
-                    using (StreamWriter sw = File.CreateText(path))
+                    using (StreamWriter sw =  File.CreateText("TexAdi_GR.txt"))
                     {
-
-                        string json = JsonConvert.SerializeObject(datos, Formatting.Indented);
-
-                        sw.Write(json);
-                        sw.Close();
+                        sw.WriteLine("--");
                     }
 
                 }
-                catch (System.Exception ex)
+                catch (System.Exception)
                 {
 
                 }
+                this.textBoxTexAdi.Value = "-";
             }
-
-            this.TextBoxContacto.Value = datos.Contacto;
-            this.textBoxCelular.Value = datos.Celular;
-            this.textBoxEmail.Value = datos.Email;
-            this.textBoxFacebook.Value = datos.Facebook;
-            this.textBoxTextoLibre.Value = datos.TextoLibre;
-            this.textBoxCta.Value = datos.Cta;
 
             this.pictureBox1.Value = Image.FromFile(PathLogo);
             

@@ -206,11 +206,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Reporting, Version=13.0.19.116, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.Reporting.OpenXmlRendering.2.7.2, Version=13.0.19.116, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
-    <Reference Include="Telerik.Reporting.Services.WebApi, Version=13.0.19.116, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
-    <Reference Include="Telerik.Reporting.XpsRendering, Version=13.0.19.116, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
-    <Reference Include="Telerik.ReportViewer.Mvc, Version=13.0.19.116, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.Reporting, Version=15.2.21.1110, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Progress\Telerik Reporting R3 2021\Bin\Telerik.Reporting.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -269,7 +268,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DatosDE.cs" />
     <Compile Include="Models\Email.cs" />
-    <Compile Include="Models\Factura\AdicionalCabecera.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\Consulta_DatosCorreo_Result.cs">
       <DependentUpon>DB_Context.tt</DependentUpon>
@@ -341,17 +339,14 @@
       <DependentUpon>DB_Context.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\DocumentosViewModel.cs" />
-    <Compile Include="Models\Factura\Cabecera.cs" />
-    <Compile Include="Models\Factura\Detalle.cs" />
-    <Compile Include="Models\Factura\Leyenda.cs" />
-    <Compile Include="Models\Factura\RootFT.cs" />
-    <Compile Include="Models\Factura\Tributo.cs" />
+    <Compile Include="Models\Factura\FacturaModel.cs" />
     <Compile Include="Models\Get_Tipo_NC_Result.cs">
       <DependentUpon>DB_Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Guias\CabeceraGR.cs" />
     <Compile Include="Models\Guias\DetalleGR.cs" />
     <Compile Include="Models\Guias\RootGR.cs" />
+    <Compile Include="Models\Helpers\SFSResponse.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JsonDoc.cs" />
     <Compile Include="Models\ListaBandejaFacturador.cs" />
@@ -382,6 +377,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Controllers\Helper\ModelMail.txt" />
+    <Content Include="ReportViewer\js\telerikReportViewer-15.2.21.1110.min.js" />
+    <Content Include="ReportViewer\js\telerikReportViewer.kendo-15.2.21.1110.min.js" />
     <Content Include="Resources\EmailTemplate.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -403,8 +400,6 @@
     <Content Include="Models\DB_Context.edmx.diagram">
       <DependentUpon>DB_Context.edmx</DependentUpon>
     </Content>
-    <Content Include="ReportViewer\js\telerikReportViewer-13.0.19.116.min.js" />
-    <Content Include="ReportViewer\js\telerikReportViewer.kendo-13.0.19.116.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

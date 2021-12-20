@@ -1,4 +1,4 @@
-@using SFS_ASP_1.Views.NotasCredito
+ï»¿@using SFS_ASP_1.Views.NotasCredito
 @using Telerik.Reporting
 @using Telerik.ReportViewer.Mvc
 @using Reportes;
@@ -20,7 +20,7 @@
     <link href="http://kendo.cdn.telerik.com/2018.2.620/styles/kendo.blueopal.min.css" rel="stylesheet" />
 
     <!--kendo.all.min.js can be used as well instead of the following custom Kendo UI subset-->
-	<script src="@Url.Content("~/ReportViewer/js/telerikReportViewer.kendo-13.0.19.116.min.js")"></script>    
+	<script src="@Url.Content("~/ReportViewer/js/telerikReportViewer.kendo-15.2.21.1110.min.js")"></script>    
 
     <style> 
         #reportViewer1 {
@@ -31,7 +31,7 @@
         }
     </style>
 
-    <script src="@Url.Content("~/ReportViewer/js/telerikReportViewer-13.0.19.116.min.js")"></script>
+    <script src="@Url.Content("~/ReportViewer/js/telerikReportViewer-15.2.21.1110.min.js")"></script>
 
 </head>
 <body>
@@ -47,7 +47,7 @@
         // The URL for custom report viewer template. The template can be edited -
         // new functionalities can be added and unneeded ones can be removed.
         // For more information please check http://www.telerik.com/help/reporting/html5-report-viewer-templates.html.
-        // .TemplateUrl(Url.Content("~/ReportViewer/templates/telerikReportViewerTemplate-13.0.19.116.html"))
+        // 
         // Strongly typed ReportSource - TypeReportSource or UriReportSource.
         .ReportSource(new TypeReportSource() { TypeName = typeof(Report_NC_A4).AssemblyQualifiedName })
         // Specifies whether the viewer is in interactive or print preview mode.
@@ -63,8 +63,8 @@
         // Zoom in and out the report using the scale
         // 1.0 is equal to 100%, i.e. the original size of the report
         .Scale(1.0)
-        // Sets whether the viewer’s client session to be persisted between the page’s refreshes(ex. postback).
-        // The session is stored in the browser’s sessionStorage and is available for the duration of the page session.
+        // Sets whether the viewerï¿½s client session to be persisted between the pageï¿½s refreshes(ex. postback).
+        // The session is stored in the browserï¿½s sessionStorage and is available for the duration of the page session.
         .PersistSession(false)
         // Sets the print mode of the viewer.
         .PrintMode(PrintMode.AutoSelect)

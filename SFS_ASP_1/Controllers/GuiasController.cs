@@ -117,7 +117,7 @@ namespace SFS_ASP_1.Controllers
 
                 Response.AddHeader("Content-Disposition",
                                    string.Format("{0};FileName=\"{1}\"",
-                                                 "attachment",
+                                                 "inline",
                                                  fileName));
                 Response.BinaryWrite(result.DocumentBytes);
                 if (!System.IO.File.Exists(RutPdf))

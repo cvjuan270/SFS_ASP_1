@@ -12,10 +12,10 @@ namespace SFS_ASP_1.Controllers.GenDocEle
     public class CrearJsonNC
     {
         private static CabeceraNC cabecera = new CabeceraNC();
-        private static AdicionalCabecera adicionalCabecera = new AdicionalCabecera();
-        private static List<Detalle> odetalle = new List<Detalle>();
-        private static List<Leyenda> leyendas = new List<Leyenda>();
-        private static List<Tributo> tributos = new List<Tributo>();
+        private static AdicionalCabeceraFT adicionalCabecera = new AdicionalCabeceraFT();
+        private static List<DetalleFT> odetalle = new List<DetalleFT>();
+        private static List<LeyendaFT> leyendas = new List<LeyendaFT>();
+        private static List<TributoFT> tributos = new List<TributoFT>();
         public string JsonNC;
         public  CrearJsonNC(int DocEnt)
         {
@@ -65,7 +65,7 @@ namespace SFS_ASP_1.Controllers.GenDocEle
 
             return cabecera;
         }
-        public static AdicionalCabecera GetAditionalCabecera(int DocEntry)
+        public static AdicionalCabeceraFT GetAditionalCabecera(int DocEntry)
         {
             using (DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC  [dbo].[Consulta_SFS_ACA_NC] @DocEntry = '{0}'", DocEntry)))
             {
@@ -84,13 +84,13 @@ namespace SFS_ASP_1.Controllers.GenDocEle
             }
             return adicionalCabecera;
         }
-        public static List<Detalle> GetListDetalle(int DocEntry)
+        public static List<DetalleFT> GetListDetalle(int DocEntry)
         {
             using (DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC [dbo].[Consulta_SFS_DET_NC] @DocEntry = '{0}'", DocEntry)))
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    Detalle detalle = new Detalle();
+                    DetalleFT detalle = new DetalleFT();
                     detalle.codUnidadMedida = dt.Rows[i].ItemArray[0].ToString();
                     detalle.codUnidadMedida = dt.Rows[i].ItemArray[0].ToString();
                     detalle.ctdUnidadItem = dt.Rows[i].ItemArray[1].ToString();
@@ -135,11 +135,11 @@ namespace SFS_ASP_1.Controllers.GenDocEle
 
             return odetalle;
         }
-        public static List<Leyenda> GetLeyenda(int DocEntry)
+        public static List<LeyendaFT> GetLeyenda(int DocEntry)
         {
             using (DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC [dbo].[Consulta_SFS_LEY_NC] @DocEntry = '{0}'", DocEntry)))
             {
-                Leyenda leyenda = new Leyenda();
+                LeyendaFT leyenda = new LeyendaFT();
                 leyenda.codLeyenda = dt.Rows[0].ItemArray[0].ToString();
                 leyenda.desLeyenda = dt.Rows[0].ItemArray[1].ToString();
 
@@ -147,11 +147,11 @@ namespace SFS_ASP_1.Controllers.GenDocEle
             }
             return leyendas;
         }
-        public static List<Tributo> GetTributo(int DocEntry)
+        public static List<TributoFT> GetTributo(int DocEntry)
         {
             using (DataTable dt = Conexion.Ejecutar_dt(string.Format("EXEC  [dbo].[Consulta_SFS_TRY_NC] @DocEntry = '{0}'", DocEntry)))
             {
-                Tributo tributo = new Tributo();
+                TributoFT tributo = new TributoFT();
 
                 tributo.ideTributo = dt.Rows[0].ItemArray[0].ToString();
                 tributo.nomTributo = dt.Rows[0].ItemArray[1].ToString();

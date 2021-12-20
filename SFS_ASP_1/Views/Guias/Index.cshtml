@@ -94,7 +94,7 @@
         </td>
     }
 
-    <td>@Html.ActionLink("PDF", "GenReport", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
+<td><a href="@Url.Action("GenReport", "Guias", new { id = item.DocEntry })" type="submit" id="runReport" target="_blank" class="badge badge-primary">PDF</a></td>
     <td>@Html.ActionLink("E-mail", "MailCreate", new { id = item.DocEntry }, htmlAttributes: new { @class = "btn btn-danger btn-sm", @style = "width:85px" })</td>
 
 </tr>

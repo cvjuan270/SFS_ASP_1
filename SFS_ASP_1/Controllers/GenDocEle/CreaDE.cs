@@ -10,15 +10,15 @@ using SFS_ASP_1.Models;
 
 namespace SFS_ASP_1.Controllers.GenDocEle
 {
-    public  class CreaDE
+    public class CreaDE
     {
         public static DatosDE oDatosDE = new DatosDE();
         public static RootListaSFS rootListaSFS;
-        public static string cmd,SFSRoot,SFSHttp,json;
+        public static string cmd, SFSRoot, SFSHttp, json;
         public static string[] respuestacdr;
 
 
-        public static DatosDE _CreaDE(string oDocTyp,int oDocEnt) 
+        public static DatosDE _CreaDE(string oDocTyp, int oDocEnt)
         {
             Datos(oDocTyp, oDocEnt);
 
@@ -26,7 +26,8 @@ namespace SFS_ASP_1.Controllers.GenDocEle
             {
                 case "01":
                     json = "";
-                    json = CreaJsonFT._CreaJsonFT(oDocEnt);
+                    CreaJsonFT creaJsonFT = new CreaJsonFT(oDocEnt);
+                    json = creaJsonFT.JsonFT;
                     break;
                 case "07":
                     json = "";
@@ -45,13 +46,13 @@ namespace SFS_ASP_1.Controllers.GenDocEle
             return oDatosDE;
         }
 
-        public static void Datos( string DocTyp, int DocEnt) 
+        public static void Datos(string DocTyp, int DocEnt)
         {
-            
+
             switch (DocTyp)
             {
                 case "01": /*FACTURA*/
-                    cmd =(string.Format("EXEC[dbo].[Consulta_NombreFactura] @DocEntry = '{0}'", DocEnt));
+                    cmd = (string.Format("EXEC[dbo].[Consulta_NombreFactura] @DocEntry = '{0}'", DocEnt));
                     break;
                 case "07":/*NOTA DE CREDITO*/
                     cmd = (string.Format("EXEC[dbo].[Consulta_NombreNC] @DocEntry = '{0}'", DocEnt));
@@ -80,7 +81,7 @@ namespace SFS_ASP_1.Controllers.GenDocEle
 
             /****RUTAS*******/
             /*validamos ruta SFS*/
-            if (DocTyp=="09") 
+            if (DocTyp == "09")
             {
                 SFSRoot = "RutSerGR";
                 SFSHttp = "RutHttpGR";
@@ -103,17 +104,18 @@ namespace SFS_ASP_1.Controllers.GenDocEle
             oDatosDE.HttEnv = ConfigurationManager.AppSettings[SFSHttp].ToString() + ConfigurationManager.AppSettings["HttpEnvio"].ToString();
             oDatosDE.HttAct = ConfigurationManager.AppSettings[SFSHttp].ToString() + ConfigurationManager.AppSettings["HttpActualizar"].ToString();
         }
-        public static void GetPostBody() 
+        public static void GetPostBody()
         {
-            JsonDoc jsonDoc = new JsonDoc {
+            JsonDoc jsonDoc = new JsonDoc
+            {
                 num_ruc = oDatosDE.RucEmi,
                 tip_docu = oDatosDE.DocTyp,
-                num_docu =oDatosDE.Serie+"-"+oDatosDE.FolNum
+                num_docu = oDatosDE.Serie + "-" + oDatosDE.FolNum
             };
 
             oDatosDE.PosBod = JsonConvert.SerializeObject(jsonDoc);
         }
-        public static void GuardaJson() 
+        public static void GuardaJson()
         {
             System.IO.File.WriteAllText(oDatosDE.RutDat, json);
             json = null;

@@ -35,7 +35,7 @@ namespace SFS_ASP_1.Models
         public string FecGene { get; set; }
 
         [JsonProperty("fec_envi")]
-        public object FecEnvi { get; set; }
+        public string FecEnvi { get; set; }
 
         [JsonProperty("des_obse")]
         public string DesObse { get; set; }
@@ -50,7 +50,7 @@ namespace SFS_ASP_1.Models
         public string TipArch { get; set; }
 
         [JsonProperty("firm_digital")]
-        public object FirmDigital { get; set; }
+        public string FirmDigital { get; set; }
     }
 
    
